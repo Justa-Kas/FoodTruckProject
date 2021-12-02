@@ -9,6 +9,8 @@ namespace FoodTruckProject.Models
     public class ApplicationUser : IdentityUser
     {
         public ICollection<PassportPage> PassportPages { get; set; }
+        public ICollection<UserProfile> UserProfiles { get; set; }
+        public ICollection<WishList> WishLists { get; set; }
 
     }
 }

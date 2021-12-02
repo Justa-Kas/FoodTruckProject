@@ -7,18 +7,17 @@ using System.Threading.Tasks;
 
 namespace FoodTruckProject.Models
 {
-    public class PassportPage
+    public class UserProfile
     {
         [Key]
         public int Id { get; set; }
-        public string BusinessId { get; set; }
-        public string BusinessName { get; set; }
+        public string Name { get; set; }
+        public string Allergies { get; set; }
         [ForeignKey("ApplicationUser")]
         public string UserId { get; set; }
-        public int Rating { get; set; }
-        public string FoodEaten { get; set; }
-        public string Experience { get; set; }
-        public DateTime DateVisited { get; set; }
-
+        public string Diet { get; set; }
+        public int FoodieRating { get; set; }
+        public string FaveFood { get; set; }
+       // public string FaveBusinessId { get; set; }
     }
 }

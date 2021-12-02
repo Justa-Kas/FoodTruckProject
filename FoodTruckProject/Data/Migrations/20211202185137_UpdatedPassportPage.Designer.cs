@@ -4,14 +4,16 @@ using FoodTruckProject.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace FoodTruckProject.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20211202185137_UpdatedPassportPage")]
+    partial class UpdatedPassportPage
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -120,64 +122,6 @@ namespace FoodTruckProject.Data.Migrations
                     b.HasIndex("ApplicationUserId");
 
                     b.ToTable("PassportPages");
-                });
-
-            modelBuilder.Entity("FoodTruckProject.Models.UserProfile", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("Allergies")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("ApplicationUserId")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<string>("Diet")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("FaveFood")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("FoodieRating")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("UserId")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("ApplicationUserId");
-
-                    b.ToTable("UserProfiles");
-                });
-
-            modelBuilder.Entity("FoodTruckProject.Models.WishList", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("ApplicationUserId")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<string>("BusinessId")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("UserId")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("ApplicationUserId");
-
-                    b.ToTable("WishLists");
                 });
 
             modelBuilder.Entity("IdentityServer4.EntityFramework.Entities.DeviceFlowCodes", b =>
@@ -401,20 +345,6 @@ namespace FoodTruckProject.Data.Migrations
                 {
                     b.HasOne("FoodTruckProject.Models.ApplicationUser", null)
                         .WithMany("PassportPages")
-                        .HasForeignKey("ApplicationUserId");
-                });
-
-            modelBuilder.Entity("FoodTruckProject.Models.UserProfile", b =>
-                {
-                    b.HasOne("FoodTruckProject.Models.ApplicationUser", null)
-                        .WithMany("UserProfiles")
-                        .HasForeignKey("ApplicationUserId");
-                });
-
-            modelBuilder.Entity("FoodTruckProject.Models.WishList", b =>
-                {
-                    b.HasOne("FoodTruckProject.Models.ApplicationUser", null)
-                        .WithMany("WishLists")
                         .HasForeignKey("ApplicationUserId");
                 });
 
