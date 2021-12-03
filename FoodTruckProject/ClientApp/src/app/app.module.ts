@@ -39,7 +39,7 @@ import { Secret } from './Secret';
       { path: '', component: HomeComponent, pathMatch: 'full' },
       { path: 'counter', component: CounterComponent },
       { path: 'fetch-data', component: FetchDataComponent, canActivate: [AuthorizeGuard] },
-      { path: 'food-trucks', component: FoodTrucksComponent },
+      { path: 'food-trucks/:lat/:lng', component: FoodTrucksComponent },
       { path: 'search-trucks', component: SearchTrucksComponent }
     ])
   ],

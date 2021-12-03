@@ -28,9 +28,9 @@ namespace FoodTruckProject.Controllers
         //endpoints
 
         [HttpGet("foodTruckAPI")]
-        public FoodTruckAPI GetFoodTruckAPI(string city)
+        public FoodTruckAPI GetFoodTruckAPI(double lat, double lng)
         {
-            HttpWebRequest request = WebRequest.CreateHttp($"https://api.yelp.com/v3/businesses/search?term=food trucks&location={city}");
+            HttpWebRequest request = WebRequest.CreateHttp($"https://api.yelp.com/v3/businesses/search?term=food trucks&latitude={lat}&longitude={lng}");
             request.Headers.Add("Authorization", "Bearer " + Secret.apiKey);
             HttpWebResponse response = (HttpWebResponse)request.GetResponse();
             StreamReader rd = new StreamReader(response.GetResponseStream());

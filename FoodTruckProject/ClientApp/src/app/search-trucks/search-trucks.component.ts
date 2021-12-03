@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { FoodTruckService } from '../food-truck.service';
 import { GeoMapService } from '../geo-map.service';
 import { geoMap } from '../geoMap';
@@ -15,18 +16,23 @@ import { FoodTruck, TruckList } from '../TruckList';
 /** SearchTrucks component*/
 export class SearchTrucksComponent {
     /** SearchTrucks ctor */
-  constructor(private foodtruckservice: FoodTruckService, private geomapservice : GeoMapService) {
+  constructor(private foodtruckservice: FoodTruckService, private geomapservice: GeoMapService, private router: ActivatedRoute) {
+    
+
   }
 
-  address: string = 'detroit';
+  address: string = 'westland';
 
   ngOnInit(): void {
     this.getLocation(this.address);
+    
+
   }
 
   geoResults: geoMap = {} as geoMap;
   lati: number = 0;
-  longi: number = 0;
+    longi: number = 0;
+
 
   getLocation(address: string): void {
     this.geomapservice.getGeoLocation(address).subscribe((response: any) => {
@@ -34,6 +40,8 @@ export class SearchTrucksComponent {
       console.log(this.geoResults);
       this.lati = this.geoResults.results[0].geometry.location.lat;
       this.longi = this.geoResults.results[0].geometry.location.lng;
+
+
     });
   }
 
