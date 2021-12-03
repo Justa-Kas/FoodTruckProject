@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Inject, Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Secret } from './Secret';
 
@@ -7,18 +7,23 @@ import { Secret } from './Secret';
 })
 
 export class FoodTruckService {
-    constructor(private http : HttpClient) {
+  constructor(private http: HttpClient, @Inject('BASE_URL') private baseUrl: string) {
 
   }
 
-  apiUrl: string = 'https://api.yelp.com/v3/businesses/search?term=food trucks&location='
+  //apiUrl: string = 'https://api.yelp.com/v3/businesses/search?term=food trucks&location='
 
   getCityFoodTrucks(city: string): any {
-    let myHeader = new HttpHeaders();
-    let key: string = 'Bearer ' + Secret.apiKey;
-    //myHeader.append('Authorization', key);
-    myHeader.set('Authorization', key);
 
-    return this.http.get(this.apiUrl + city, { "headers": myHeader });
+
+    //let myHeader = new HttpHeaders();
+    //let key: string = 'Bearer ' + Secret.apiKey;
+    ////myHeader.append('Authorization', key);
+    //myHeader.set('Authorization', key)
+    //.set('content-type', 'application/json')
+    //  .set('Access-Control-Allow-Origin', '*');
+
+
+    return this.http.get(this.baseUrl + `api/PassportPage/foodTruckAPI?city=${city}`);
   }
 }

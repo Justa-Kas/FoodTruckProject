@@ -3,14 +3,17 @@ using FoodTruckProject.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Net;
 using System.Security.Claims;
 using System.Threading.Tasks;
 
 namespace FoodTruckProject.Controllers
-{   [Authorize]
+{   //[Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class PassportPageController : ControllerBase
@@ -21,8 +24,23 @@ namespace FoodTruckProject.Controllers
         {
             context = _context;
         }
-
+        //--------------------YELP ENDPOINTS----------------------------------------------------------!!//
         //endpoints
+
+        [HttpGet("foodTruckAPI")]
+        public FoodTruckAPI GetFoodTruckAPI(string city)
+        {
+            HttpWebRequest request = WebRequest.CreateHttp($"https://api.yelp.com/v3/businesses/search?term=food trucks&location={city}");
+            request.Headers.Add("Authorization", "Bearer " + Secret.apiKey);
+            HttpWebResponse response = (HttpWebResponse)request.GetResponse();
+            StreamReader rd = new StreamReader(response.GetResponseStream());
+            string json = rd.ReadToEnd();
+            rd.Close();
+            FoodTruckAPI result = JsonConvert.DeserializeObject<FoodTruckAPI>(json);
+            return result;
+        }
+
+        //----------PASSPORT ENDPOINTS-----------------------------------------------------------------
         [HttpGet("allPages")]
         public List<PassportPage> DisplayAllPages()
         {
