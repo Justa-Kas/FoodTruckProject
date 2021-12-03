@@ -18,7 +18,9 @@ export class FoodTrucksComponent {
     this.getAllTrucks(this.city);
   }
 
+
   city: string = 'detroit';
+
 
   TrucksObj: TruckList = {} as TruckList;
   cityTrucks: FoodTruck[] = [];
@@ -29,6 +31,7 @@ export class FoodTrucksComponent {
       console.log(this.TrucksObj);
 
       this.cityTrucks = this.TrucksObj.businesses;
+      console.log(this.cityTrucks);
     })
   }
 }

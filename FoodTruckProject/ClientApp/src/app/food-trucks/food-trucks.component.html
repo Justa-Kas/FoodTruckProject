@@ -1,8 +1,13 @@
 <h1>All food trucks in {{ city }}</h1>
+<br />
+<br />
 
 <div *ngFor="let T of cityTrucks">
-  <img src={{ T.image_url }} height="200" width="200" />
   <h3>{{ T.name }}</h3>
-  <h5>{{ T.price }} {{ T.rating }}</h5>
-  <a href={{ T.url }}>Link to website</a>
+  <img src="{{ T.image_url }}" height="200" width="200" alt="yummy food image" />
+  <h5 *ngIf="T.price != null">Price: {{ T.price }}</h5>
+  <h5>Rating: {{ T.rating }}/5</h5>
+  <a href="{{ T.url }}">Link to website</a>
+  <br />
+  <br />
 </div>

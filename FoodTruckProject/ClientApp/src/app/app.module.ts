@@ -13,6 +13,9 @@ import { ApiAuthorizationModule } from 'src/api-authorization/api-authorization.
 import { AuthorizeGuard } from 'src/api-authorization/authorize.guard';
 import { AuthorizeInterceptor } from 'src/api-authorization/authorize.interceptor';
 import { FoodTrucksComponent } from './food-trucks/food-trucks.component';
+import { SearchTrucksComponent } from './search-trucks/search-trucks.component';
+/*import { AgmCoreModule } from '@agm/core';*/
+import { Secret } from './Secret';
 
 @NgModule({
   declarations: [
@@ -21,18 +24,23 @@ import { FoodTrucksComponent } from './food-trucks/food-trucks.component';
     HomeComponent,
     CounterComponent,
     FetchDataComponent,
-    FoodTrucksComponent
+    FoodTrucksComponent,
+    SearchTrucksComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
     HttpClientModule,
+    //AgmCoreModule.forRoot({
+    //  apiKey: Secret.gApiKey
+    //}),
     FormsModule,
     ApiAuthorizationModule,
     RouterModule.forRoot([
       { path: '', component: HomeComponent, pathMatch: 'full' },
       { path: 'counter', component: CounterComponent },
       { path: 'fetch-data', component: FetchDataComponent, canActivate: [AuthorizeGuard] },
-      { path: 'food-trucks', component: FoodTrucksComponent }
+      { path: 'food-trucks', component: FoodTrucksComponent },
+      { path: 'search-trucks', component: SearchTrucksComponent }
     ])
   ],
   providers: [
