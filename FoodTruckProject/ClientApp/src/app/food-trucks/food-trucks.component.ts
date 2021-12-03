@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { FoodTruckService } from '../food-truck.service';
-import { TruckList } from '../TruckList';
+import { FoodTruck, TruckList } from '../TruckList';
 
 @Component({
     selector: 'app-food-trucks',
@@ -11,15 +11,24 @@ import { TruckList } from '../TruckList';
 export class FoodTrucksComponent {
     /** FoodTrucks ctor */
     constructor(private foodtruckservice : FoodTruckService) {
-      this.getAllTrucks('detroit');
+      //this.getAllTrucks('detroit');
   }
 
-  allTrucks: TruckList = {} as TruckList;
+  ngOnInit(): void {
+    this.getAllTrucks(this.city);
+  }
+
+  city: string = 'detroit';
+
+  TrucksObj: TruckList = {} as TruckList;
+  cityTrucks: FoodTruck[] = [];
 
   getAllTrucks(city: string): void {
     this.foodtruckservice.getCityFoodTrucks(city).subscribe((response: any) => {
-      this.allTrucks = response;
-      console.log(this.allTrucks);
+      this.TrucksObj = response;
+      console.log(this.TrucksObj);
+
+      this.cityTrucks = this.TrucksObj.businesses;
     })
   }
 }
