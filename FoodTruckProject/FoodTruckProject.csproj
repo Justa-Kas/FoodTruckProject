@@ -31,6 +31,8 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Remove="ClientApp\src\app\Secret.js" />
+    <None Remove="ClientApp\src\app\Secret.js.map" />
     <None Remove="ClientApp\src\app\Secret.ts" />
     <None Remove="ClientApp\src\app\TruckList.ts" />
   </ItemGroup>
