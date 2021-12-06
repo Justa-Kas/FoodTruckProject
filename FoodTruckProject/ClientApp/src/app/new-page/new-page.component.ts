@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
-import { PassportService } from '../src/app/passport.service';
-import { passportPage } from '../src/app/passportPage';
+import { PassportService } from '../passport.service';
+import { passportPage } from '../passportPage';
 import { Router } from '@angular/router';
 
 @Component({

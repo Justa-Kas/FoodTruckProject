@@ -16,7 +16,7 @@ import { FoodTrucksComponent } from './food-trucks/food-trucks.component';
 /*import { AgmCoreModule } from '@agm/core';*/
 import { Secret } from './Secret';
 import { PassportPageComponent } from './passport-page/passport-page.component';
-import { NewPageComponent } from '../../new-page/new-page.component';
+import { NewPageComponent } from './new-page/new-page.component';
 import { WishListComponent } from './wish-list/wish-list.component';
 
 

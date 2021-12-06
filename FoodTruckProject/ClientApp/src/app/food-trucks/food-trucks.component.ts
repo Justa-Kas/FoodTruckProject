@@ -1,6 +1,6 @@
 import { Component, ElementRef, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Observable, zip } from 'rxjs';
 import { AuthorizeService } from '../../api-authorization/authorize.service';
 import { FoodTruckService } from '../food-truck.service';
@@ -19,7 +19,7 @@ import { WishListComponent } from '../wish-list/wish-list.component';
 /** FoodTrucks component*/
 export class FoodTrucksComponent {
     /** FoodTrucks ctor */
-  constructor(private foodtruckservice: FoodTruckService, private router: ActivatedRoute, private geomapservice: GeoMapService, private authorizeservice: AuthorizeService, private wishlistservice:WishListService) {
+  constructor(private foodtruckservice: FoodTruckService, private router: ActivatedRoute, private geomapservice: GeoMapService, private authorizeservice: AuthorizeService, private wishlistservice:WishListService, private routing : Router) {
 
   }
 
@@ -117,7 +117,10 @@ export class FoodTrucksComponent {
   addToWishList(bid: string, bname:string): void {
     this.wishlistservice.addToWishList(bid,bname).subscribe((response: any) => {
       console.log(response);
+      this.routing.navigate(['/wish-list']);
     });
+
+    
   }
 
 
