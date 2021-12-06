@@ -25,6 +25,7 @@
   <h5>Rating: {{ T.rating }}/5</h5>
   <a href="{{ T.url }}">Link to website</a>
   <button *ngIf="isAuthenticated | async" routerLink="/add-page/{{ T.id }}/{{ T.name }}">Add To Passport</button>
+  <button *ngIf="isAuthenticated | async" routerLink="/wish-list">Add To WishList</button>
   <br />
   <br />
 </div>

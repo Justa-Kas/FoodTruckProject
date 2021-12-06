@@ -14,5 +14,7 @@ namespace FoodTruckProject.Models
         [ForeignKey("ApplicationUser")]
         public string UserId { get; set; }
         public string BusinessId { get; set; }
+
+        public string BusinessName { get; set; }
     }
 }
