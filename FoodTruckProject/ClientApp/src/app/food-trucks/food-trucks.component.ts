@@ -8,6 +8,8 @@ import { GeoMapService } from '../geo-map.service';
 import { geoMap } from '../geoMap';
 import { Secret } from '../Secret';
 import { FoodTruck, TruckList } from '../TruckList';
+import { WishListService } from '../wish-list.service';
+import { WishListComponent } from '../wish-list/wish-list.component';
 
 @Component({
     selector: 'app-food-trucks',
@@ -17,7 +19,7 @@ import { FoodTruck, TruckList } from '../TruckList';
 /** FoodTrucks component*/
 export class FoodTrucksComponent {
     /** FoodTrucks ctor */
-  constructor(private foodtruckservice: FoodTruckService, private router: ActivatedRoute, private geomapservice: GeoMapService, private authorizeservice: AuthorizeService) {
+  constructor(private foodtruckservice: FoodTruckService, private router: ActivatedRoute, private geomapservice: GeoMapService, private authorizeservice: AuthorizeService, private wishlistservice:WishListService) {
 
   }
 
@@ -75,23 +77,6 @@ export class FoodTrucksComponent {
 
   @ViewChild('mapRef', { static: true }) mapElement: ElementRef;
 
-  //renderMap() {
-
-  //  window['initMap'] = () => {
-  //    this.loadMap();
-  //  }
-  //  if (!window.document.getElementById('google-map-script')) {
-  //    var s = window.document.createElement("script");
-  //    s.id = "google-map-script";
-  //    s.type = "text/javascript";
-  //    s.src = `https://maps.googleapis.com/maps/api/js?key=${Secret.gApiKey}&amp;callback=initMap`;
-
-  //    window.document.body.appendChild(s);
-  //  } else {
-  //    this.loadMap();
-  //  }
-  //}
-
   loadMap = () => {
 
     this.getAllTrucks(this.getLat, this.getLong);
@@ -128,4 +113,12 @@ export class FoodTrucksComponent {
     });
 
   }
+
+  addToWishList(bid: string, bname:string): void {
+    this.wishlistservice.addToWishList(bid,bname).subscribe((response: any) => {
+      console.log(response);
+    });
+  }
+
+
 }

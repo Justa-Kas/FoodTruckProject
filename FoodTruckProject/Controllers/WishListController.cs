@@ -1,5 +1,6 @@
 ﻿using FoodTruckProject.Data;
 using FoodTruckProject.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -10,6 +11,7 @@ using System.Threading.Tasks;
 
 namespace FoodTruckProject.Controllers
 {
+    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class WishListController : ControllerBase
@@ -33,16 +35,16 @@ namespace FoodTruckProject.Controllers
             return this.context.WishLists.Where(P => P.UserId == currentUserID).ToList();
         }
 
-        [HttpPost("addToWishList/{businessId}")]
+        [HttpPost("addToWishList")]
 
-        public WishList addToWishList(string businessId)
+        public WishList addToWishList(string businessId, string businessName)
         {
             //grabbed current logged in user
             ClaimsPrincipal currentUser = this.User;
 
             string currentUserID = currentUser.FindFirst(ClaimTypes.NameIdentifier).Value;
 
-            WishList newWish = new WishList() { BusinessId = businessId, UserId = currentUserID };
+            WishList newWish = new WishList() { BusinessId = businessId, UserId = currentUserID, BusinessName=businessName };
             this.context.WishLists.Add(newWish);
             this.context.SaveChanges();
             return newWish;

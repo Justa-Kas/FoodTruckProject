@@ -17,6 +17,7 @@ import { FoodTrucksComponent } from './food-trucks/food-trucks.component';
 import { Secret } from './Secret';
 import { PassportPageComponent } from './passport-page/passport-page.component';
 import { NewPageComponent } from '../../new-page/new-page.component';
+import { WishListComponent } from './wish-list/wish-list.component';
 
 
 @NgModule({
@@ -28,7 +29,8 @@ import { NewPageComponent } from '../../new-page/new-page.component';
     FetchDataComponent,
     FoodTrucksComponent,
     NewPageComponent,
-    PassportPageComponent
+    PassportPageComponent,
+    WishListComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -44,7 +46,8 @@ import { NewPageComponent } from '../../new-page/new-page.component';
       { path: 'fetch-data', component: FetchDataComponent, canActivate: [AuthorizeGuard] },
       { path: 'food-trucks', component: FoodTrucksComponent },
       { path: 'passport', component: PassportPageComponent },
-      { path: 'add-page/:bid/:bname', component: NewPageComponent}
+      { path: 'add-page/:bid/:bname', component: NewPageComponent },
+      {path: 'wish-list', component: WishListComponent, canActivate: [AuthorizeGuard]}
     ])
   ],
   providers: [
