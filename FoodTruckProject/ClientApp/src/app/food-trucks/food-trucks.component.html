@@ -1,6 +1,8 @@
-<h1>All food trucks in {{ city }}</h1>
-<br />
-<br />
+<form #searchAddress="ngForm" (ngSubmit)="getLocation(searchAddress)">
+  <label for="address">Please enter a city, state or zip code:</label>
+  <input name="address" type="text" min="1" required ngModel/>
+  <button>Search</button>
+</form>
 
 <div class="row mt-5">
   <div class="col-md-9 mx-auto">
@@ -13,12 +15,16 @@
   </div>
 </div>
 
+<h1>All food trucks in {{ city }}</h1>
+<br />
+<br />
 <div *ngFor="let T of cityTrucks">
   <h3>{{ T.name }}</h3>
-  <img src="{{ T.image_url }}" height="200" width="200" alt="yummy food image" />
+  <img src="{{ T.image_url }}" height="250" width="250" alt="yummy food image" />
   <h5 *ngIf="T.price != null">Price: {{ T.price }}</h5>
   <h5>Rating: {{ T.rating }}/5</h5>
   <a href="{{ T.url }}">Link to website</a>
+  <button *ngIf="isAuthenticated | async" routerLink="/add-page/{{ T.id }}/{{ T.name }}">Add To Passport</button>
   <br />
   <br />
 </div>

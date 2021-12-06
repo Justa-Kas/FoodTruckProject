@@ -1,0 +1,11 @@
+<form #addPage="ngForm" (ngSubmit)="addPassportPage(addPage)">
+  <label for="dateVisited">Date Visited:</label>
+  <input name="dateVisited" type="date" ngModel required /><br />
+  <label for="foodEaten">What Did You Eat?</label>
+  <input name="foodEaten" type="text" ngModel required /><br />
+  <label for="rating">Please Enter A Rating:</label>
+  <input name="rating" type="number" ngModel /><br />
+  <label for="experience">How Was The Experience?</label>
+  <input name="experience" type="text" ngModel /><br />
+  <button>Log Passport Entry</button>
+</form>

@@ -15,6 +15,9 @@ import { AuthorizeInterceptor } from 'src/api-authorization/authorize.intercepto
 import { FoodTrucksComponent } from './food-trucks/food-trucks.component';
 /*import { AgmCoreModule } from '@agm/core';*/
 import { Secret } from './Secret';
+import { PassportPageComponent } from './passport-page/passport-page.component';
+import { NewPageComponent } from '../../new-page/new-page.component';
+
 
 @NgModule({
   declarations: [
@@ -24,6 +27,8 @@ import { Secret } from './Secret';
     CounterComponent,
     FetchDataComponent,
     FoodTrucksComponent,
+    NewPageComponent,
+    PassportPageComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -38,6 +43,8 @@ import { Secret } from './Secret';
       { path: 'counter', component: CounterComponent },
       { path: 'fetch-data', component: FetchDataComponent, canActivate: [AuthorizeGuard] },
       { path: 'food-trucks', component: FoodTrucksComponent },
+      { path: 'passport', component: PassportPageComponent },
+      { path: 'add-page/:bid/:bname', component: NewPageComponent}
     ])
   ],
   providers: [

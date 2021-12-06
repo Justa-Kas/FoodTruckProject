@@ -1,5 +1,8 @@
 import { Component, ElementRef, ViewChild } from '@angular/core';
+import { NgForm } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
+import { Observable, zip } from 'rxjs';
+import { AuthorizeService } from '../../api-authorization/authorize.service';
 import { FoodTruckService } from '../food-truck.service';
 import { GeoMapService } from '../geo-map.service';
 import { geoMap } from '../geoMap';
@@ -14,13 +17,17 @@ import { FoodTruck, TruckList } from '../TruckList';
 /** FoodTrucks component*/
 export class FoodTrucksComponent {
     /** FoodTrucks ctor */
-  constructor(private foodtruckservice: FoodTruckService, private router: ActivatedRoute, private geomapservice: GeoMapService) {
+  constructor(private foodtruckservice: FoodTruckService, private router: ActivatedRoute, private geomapservice: GeoMapService, private authorizeservice: AuthorizeService) {
 
   }
 
   ngOnInit(): void {
-    this.getLocation(this.address);
+    this.loadDefaultMap();
+    this.isAuthenticated = this.authorizeservice.isAuthenticated();
   }
+
+  public isAuthenticated: Observable<boolean>;
+
 
   city: string = "";
   //lat: number = 42.331429;
@@ -44,10 +51,17 @@ export class FoodTrucksComponent {
     })
   }
 
+  loadDefaultMap(): any {
+    this.getLat = 42.331429;
+    this.getLong = -83.045753;
+    this.geomapservice.initMap(this.mapElement, this.getLat, this.getLong);
+  }
+
   geoResults: geoMap = {} as geoMap;
 
-  getLocation(address: string): void {
-    this.geomapservice.getGeoLocation(address).subscribe((response: any) => {
+  getLocation(form: NgForm): void {
+    console.log('address=', form.form.value.address); 
+    this.geomapservice.getGeoLocation(form.form.value.address).subscribe((response: any) => {
       this.geoResults = response;
       console.log(this.geoResults);
       this.getLat = this.geoResults.results[0].geometry.location.lat;
@@ -55,6 +69,7 @@ export class FoodTrucksComponent {
       console.log(this.getLat, this.getLong);
 
       this.loadMap();
+      
     });
   }
 
