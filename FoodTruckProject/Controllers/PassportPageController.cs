@@ -27,18 +27,7 @@ namespace FoodTruckProject.Controllers
         //--------------------YELP ENDPOINTS----------------------------------------------------------!!//
         //endpoints
 
-        [HttpGet("foodTruckAPI")]
-        public FoodTruckAPI GetFoodTruckAPI(double lat, double lng)
-        {
-            HttpWebRequest request = WebRequest.CreateHttp($"https://api.yelp.com/v3/businesses/search?term=food trucks&latitude={lat}&longitude={lng}");
-            request.Headers.Add("Authorization", "Bearer " + Secret.apiKey);
-            HttpWebResponse response = (HttpWebResponse)request.GetResponse();
-            StreamReader rd = new StreamReader(response.GetResponseStream());
-            string json = rd.ReadToEnd();
-            rd.Close();
-            FoodTruckAPI result = JsonConvert.DeserializeObject<FoodTruckAPI>(json);
-            return result;
-        }
+ 
 
         //----------PASSPORT ENDPOINTS-----------------------------------------------------------------
         [HttpGet("allPages")]
