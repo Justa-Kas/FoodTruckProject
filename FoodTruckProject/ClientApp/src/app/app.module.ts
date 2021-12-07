@@ -18,6 +18,7 @@ import { Secret } from './Secret';
 import { PassportPageComponent } from './passport-page/passport-page.component';
 import { NewPageComponent } from './new-page/new-page.component';
 import { WishListComponent } from './wish-list/wish-list.component';
+import { ProfileComponent } from './profile/profile.component';
 
 
 @NgModule({
@@ -30,7 +31,8 @@ import { WishListComponent } from './wish-list/wish-list.component';
     FoodTrucksComponent,
     NewPageComponent,
     PassportPageComponent,
-    WishListComponent
+    WishListComponent,
+    ProfileComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -47,7 +49,8 @@ import { WishListComponent } from './wish-list/wish-list.component';
       { path: 'food-trucks', component: FoodTrucksComponent },
       { path: 'passport', component: PassportPageComponent },
       { path: 'add-page/:bid/:bname', component: NewPageComponent },
-      {path: 'wish-list', component: WishListComponent, canActivate: [AuthorizeGuard]}
+      { path: 'wish-list', component: WishListComponent, canActivate: [AuthorizeGuard] },
+      { path: 'user-profile', component: ProfileComponent, canActivate: [AuthorizeGuard] }
     ])
   ],
   providers: [

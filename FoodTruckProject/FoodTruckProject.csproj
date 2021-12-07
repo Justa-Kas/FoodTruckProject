@@ -33,6 +33,7 @@
   <ItemGroup>
     <None Remove="ClientApp\src\app\geoMap.ts" />
     <None Remove="ClientApp\src\app\passportPage.ts" />
+    <None Remove="ClientApp\src\app\Profile.ts" />
     <None Remove="ClientApp\src\app\Secret.js" />
     <None Remove="ClientApp\src\app\Secret.js.map" />
     <None Remove="ClientApp\src\app\Secret.ts" />
@@ -43,6 +44,7 @@
   <ItemGroup>
     <TypeScriptCompile Include="ClientApp\src\app\geoMap.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\passportPage.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\Profile.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\Secret.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\TruckList.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\WishList.ts" />

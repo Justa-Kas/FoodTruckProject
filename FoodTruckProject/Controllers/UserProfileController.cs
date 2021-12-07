@@ -23,14 +23,41 @@ namespace FoodTruckProject.Controllers
         }
 
         //endpoints
-        [HttpGet("userProfile")]
+        [HttpGet("profile")]
         public UserProfile DisplayUserProfile()
         {
             //grabbed current logged in user
             ClaimsPrincipal currentUser = this.User;
-
             string currentUserID = currentUser.FindFirst(ClaimTypes.NameIdentifier).Value;
             return this.context.UserProfiles.First(P => P.UserId == currentUserID);
+        }
+
+        [HttpPost("new_profile")]
+        public UserProfile NewProfile(string name, string allergies, string diet, int foodieRating, string favFood)
+        {
+            //grabbed current logged in user
+            ClaimsPrincipal currentUser = this.User;
+            string currentUserID = currentUser.FindFirst(ClaimTypes.NameIdentifier).Value;
+
+            UserProfile newUser = new UserProfile()
+            {
+                Name = name,
+                Allergies = allergies,
+                UserId = currentUserID,
+                Diet = diet,
+                FoodieRating = foodieRating,
+                FaveFood = favFood
+            };
+
+            this.context.UserProfiles.Add(newUser);
+            this.context.SaveChanges();
+            return newUser;
+        }
+
+        [HttpGet("isUser")]
+        public bool checkForUser(string userid)
+        {
+            return this.context.UserProfiles.Any(P => P.UserId == userid);
         }
 
         //[HttpPut("userProfile/update/{id}")]

@@ -13,6 +13,7 @@ namespace FoodTruckProject.Models
         public int Id { get; set; }
         public string Name { get; set; }
         public string Allergies { get; set; }
+
         [ForeignKey("ApplicationUser")]
         public string UserId { get; set; }
         public string Diet { get; set; }
