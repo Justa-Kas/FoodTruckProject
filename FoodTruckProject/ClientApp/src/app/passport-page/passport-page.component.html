@@ -1,1 +1,5 @@
-﻿<div style="border: 1px solid red">passportPage Component</div>
+<div id="page">
+  <h4>Welcome To Your Passport</h4>
+</div>
+<button *ngIf="pageCounter > 0" (click)="previousPage(pageCounter -1)">Previous Page</button>
+<button *ngIf="pageCounter < Passport.length" (click)="forwardPage(pageCounter)">Next Page</button>

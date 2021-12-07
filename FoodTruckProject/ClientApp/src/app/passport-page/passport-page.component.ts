@@ -17,7 +17,8 @@ export class PassportPageComponent {
 
   }
   ngOnInit(): void {
-
+    this.getAllPages();
+    this.pageCounter = 0;
   }
 
   Passport: passportPage[] = [];
@@ -36,12 +37,42 @@ export class PassportPageComponent {
     })
   }
   Truck: FoodTruck = {} as FoodTruck;
-
-  
+  onePage: passportPage = {} as passportPage;
+  pageCounter: number = 0;
 
   deletePassportPage(id: number): void {
     this.passportService.deletePassportPage(id).subscribe((response: any) => {
       this.getAllPages();
     })
+  }
+
+  forwardPage(i: number): void {
+    const app = document.getElementById('page');
+    this.pageCounter++;
+    if (this.pageCounter == 0) {
+      app.innerHTML = '<h4>Welcome To Your Passport</h4>';
+    }
+    else{
+    this.onePage = this.Passport[i];
+    console.log(this.Passport[i]);
+    let passInfo: string = `<h4> ${this.onePage.businessName}</h4>` + `<h5> ${this.onePage.rating}</h5>` + `<h5> ${this.onePage.foodEaten}</h5>` +
+      `<h5> ${this.onePage.experience}</h5>` + `<h5> ${this.onePage.dateVisited}</h5>`;
+    app.innerHTML = passInfo;
+    }
+  }
+
+  previousPage(i: number): void {
+    const app = document.getElementById('page');
+    this.pageCounter--;
+    if (this.pageCounter == 0) {
+      app.innerHTML = '<h4>Welcome To Your Passport</h4>';
+    }
+    else {
+    this.onePage = this.Passport[i-1];
+    console.log(this.Passport[i-1]);
+    let passInfo: string = `<h4> ${this.onePage.businessName}</h4>` + `<h5> ${this.onePage.rating}</h5>` + `<h5> ${this.onePage.foodEaten}</h5>` +
+      `<h5> ${this.onePage.experience}</h5>` + `<h5> ${this.onePage.dateVisited}</h5>`;
+    app.innerHTML = passInfo;
+    }
   }
 }

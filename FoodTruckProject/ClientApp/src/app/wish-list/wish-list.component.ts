@@ -23,11 +23,16 @@ export class WishListComponent {
 
   WishList: WishListItem[] = [];
   TruckItems: FoodTruck[] = [];
+  indexNum: number = 0;
   foodTruck: FoodTruck = {} as FoodTruck;
   
   deleteFromWishList(id: number): void {
     this.wishlistservice.removeFromWishList(id).subscribe((response: any) => {
       console.log(response);
+      for (let i = 0; i < this.WishList.length; i++) {
+        this.indexNum = this.TruckItems.findIndex(w => (w.id == this.WishList[i].businessId));
+      }
+      this.TruckItems.splice(this.indexNum, 1);
       this.buildWishList();
     });
   }
@@ -47,6 +52,7 @@ export class WishListComponent {
         this.foodTruck = response;
         console.log(response);
         this.TruckItems.push(this.foodTruck);
+        
        //console.log(this.TruckItems);
       });
     }
