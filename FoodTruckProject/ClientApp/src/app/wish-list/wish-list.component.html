@@ -1,3 +1,10 @@
-<div *ngFor="let w of WishList">
-  <h4>{{ w.businessName }}</h4>
+<h2>Food Trucks In Wish List</h2>
+<div *ngFor="let W of TruckItems;let i=index">
+  <h5>{{ W.name }}</h5>
+  {{ W.location.display_address[0] }}, {{ W.location.display_address[1] }}
+  <a href="{{ W.url }}">Link To Website</a>
+  <br />
+  <button (click)="deleteFromWishList(i)">Delete From Wish List</button>
+  <br />
+  <button routerLink="/add-page/{{ W.id }}/{{ W.name }}">Add To Passport</button>
 </div>

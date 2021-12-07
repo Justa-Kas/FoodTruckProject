@@ -13,6 +13,10 @@ export class FoodTruckService {
   }
 
   getCityFoodTrucks(latti : number, longi : number): any {
-    return this.http.get(this.baseUrl + `api/PassportPage/foodTruckAPI?lat=${latti}&lng=${longi}`);
+    return this.http.get(this.baseUrl + `api/FoodTruck/foodTruckAPI?lat=${latti}&lng=${longi}`);
+  }
+
+  getTruckDetails(bid:string): any {
+    return this.http.get(this.baseUrl +`api/FoodTruck/TruckDetails/${bid}`);
   }
 }

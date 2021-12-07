@@ -117,7 +117,7 @@ export class FoodTrucksComponent {
   addToWishList(bid: string, bname:string): void {
     this.wishlistservice.addToWishList(bid,bname).subscribe((response: any) => {
       console.log(response);
-      this.routing.navigate(['/wish-list']);
+      //this.routing.navigate(['/wish-list']);
     });
 
     
