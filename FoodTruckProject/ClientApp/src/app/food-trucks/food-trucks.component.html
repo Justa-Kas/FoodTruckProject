@@ -23,7 +23,7 @@
   <img src="{{ T.image_url }}" height="250" width="250" alt="yummy food image" />
   <h5 *ngIf="T.price != null">Price: {{ T.price }}</h5>
   <h5>Rating: {{ T.rating }}/5</h5>
-  <a href="{{ T.url }}">Link to website</a>
+  <a href= "{{ T.url }}">Link to website</a>
   <button *ngIf="isAuthenticated | async" routerLink="/add-page/{{ T.id }}/{{ T.name }}">Add To Passport</button>
   <button *ngIf="isAuthenticated | async" (click)="addToWishList(T.id, T.name)">Add To Wish List</button>
   <br />
