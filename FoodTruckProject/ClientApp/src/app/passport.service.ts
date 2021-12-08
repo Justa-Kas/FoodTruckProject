@@ -14,7 +14,7 @@ export class PassportService {
   }
 
   addPassportPage(_businessId: string, _businessName: string, _rating: number, _fEaten: string, _experience: string, _date: Date): any {
-    return this.httpservice.post(this.baseUrl + `api/PassportPage/addPassportPage?businessId=${_businessId}&businessName=${_businessName}&rating=${_rating}&foodEaten=${_fEaten}&experience=${_experience}&date=${_date}`, {});
+    return this.httpservice.post(this.baseUrl + `api/PassportPage/addPassportPage?businessId=${_businessId}&businessName=${_businessName}&rating=${_rating}&foodEaten=${_fEaten}&experience=${_experience}&dateVisited=${_date}`, {});
   }
 
   deletePassportPage(id: number): any {
@@ -25,6 +25,13 @@ export class PassportService {
     return this.httpservice.get(this.baseUrl + `api/PassportPage/date/${dateVisited}`);
   }
 
+  updatePassportPage(_businessId: string, _businessName: string, _rating: number, _fEaten: string, _experience: string, _date: Date): any {
+    return this.httpservice.put(this.baseUrl + `api/PassportPage/editPage?businessId=${_businessId}&businessName=${_businessName}&rating=${_rating}&foodEaten=${_fEaten}&experience=${_experience}&dateVisited=${_date}`, {});
+  }
+
+  //updatePassportPage(): any {
+  //  return this.httpservice.put(this.baseUrl + `api/PassportPage/editPage`, {});
+  //}
 
 }
 

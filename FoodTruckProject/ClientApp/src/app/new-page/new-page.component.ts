@@ -36,6 +36,6 @@ export class NewPageComponent {
       //this.newPage = response;
 
     })
-    this.routing.navigate(['/passport']);
+    /*this.routing.navigate(['/passport']);*/
   }
 }

@@ -30,7 +30,7 @@
 
 <form *ngIf="displayEdit" #editProfile="ngForm" (ngSubmit)="updateUserProfile(editProfile)">
   <label for="name">Preferred name: </label>
-  <input type="text" name="name" placeholder="{{ currentProfile.name }}" ngModel required />
+  <input type="text" name="name" placeholder="{{ currentProfile.name }}" ngModel />
   <br />
   <label for="allergies">List any allergies: </label>
   <input type="text" name="allergies" placeholder="{{ currentProfile.allergies }}" ngModel />

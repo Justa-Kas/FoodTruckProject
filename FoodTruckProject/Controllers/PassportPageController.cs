@@ -24,11 +24,7 @@ namespace FoodTruckProject.Controllers
         {
             context = _context;
         }
-        //--------------------YELP ENDPOINTS----------------------------------------------------------!!//
-        //endpoints
-
- 
-
+       
         //----------PASSPORT ENDPOINTS-----------------------------------------------------------------
         [HttpGet("allPages")]
         public List<PassportPage> DisplayAllPages()
@@ -87,6 +83,24 @@ namespace FoodTruckProject.Controllers
             return result;
         }
 
+        [HttpPut("editPage")]
+        public PassportPage EditPassportPage(string businessId, string businessName, int rating, string foodEaten, string experience, DateTime dateVisited)
+        {
+
+            PassportPage updatePage = context.PassportPages.Where(P => P.BusinessId == businessId).Single();
+            updatePage.BusinessId = businessId;
+            updatePage.BusinessName = businessName;
+            updatePage.Rating = rating;
+            updatePage.FoodEaten = foodEaten;
+            updatePage.Experience = experience;
+            updatePage.DateVisited = dateVisited;
+
+            context.PassportPages.Update(updatePage);
+            context.SaveChanges();
+            return updatePage;
+        }
+    }
+
 
         //[HttpGet("pageNumber/{id}")]
         //public List<PassportPage> DisplayByPageNumber(int id)
@@ -106,5 +120,5 @@ namespace FoodTruckProject.Controllers
 
 
 
-    }
+    
 }

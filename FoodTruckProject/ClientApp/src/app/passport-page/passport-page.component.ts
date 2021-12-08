@@ -16,13 +16,19 @@ export class PassportPageComponent {
   constructor(private passportService: PassportService, private router: ActivatedRoute) {
 
   }
+
+  Passport: passportPage[] = [];
+  newPage: passportPage = {} as passportPage;
+  updatedPage: boolean = false;
+  Truck: FoodTruck = {} as FoodTruck;
+  onePage: passportPage = {} as passportPage;
+  pageCounter: number = 0;
+
   ngOnInit(): void {
     this.getAllPages();
     this.pageCounter = 0;
   }
 
-  Passport: passportPage[] = [];
-  newPage: passportPage = {} as passportPage;
 
   getAllPages(): void {
     this.passportService.getAllPages().subscribe((response: any) => {
@@ -36,9 +42,7 @@ export class PassportPageComponent {
       this.newPage = response;
     })
   }
-  Truck: FoodTruck = {} as FoodTruck;
-  onePage: passportPage = {} as passportPage;
-  pageCounter: number = 0;
+
 
   deletePassportPage(id: number): void {
     this.passportService.deletePassportPage(id).subscribe((response: any) => {
@@ -75,4 +79,34 @@ export class PassportPageComponent {
     app.innerHTML = passInfo;
     }
   }
+  editPassportPage(form: NgForm): void {
+
+    let newPage: passportPage = {
+      id: 0,
+      businessId: "",
+      businessName: "",
+      userId: "",
+
+      rating: form.form.value.rating,
+      foodEaten: form.form.value.foodEaten,
+      experience: form.form.value.experience,
+      dateVisited: form.form.value.dateVisited
+    }
+    this.passportService.updatePassportPage(this.onePage.businessId, this.onePage.businessName, newPage.rating, newPage.foodEaten, newPage.experience, newPage.dateVisited).subscribe((response: any) => {
+      this.onePage = response;
+      console.log(this.onePage);
+      this.Passport.push(this.onePage);
+      this.updatedPage = false;
+
+    })
+   // this.routing.navigate(['/passport']);
+  }
+
+  resetPage(): void {
+    this.updatedPage = true;
+  }
+
+
 }
+
+
