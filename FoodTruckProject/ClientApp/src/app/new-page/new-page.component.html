@@ -4,7 +4,7 @@
   <label for="foodEaten">What Did You Eat?</label>
   <input name="foodEaten" type="text" ngModel required /><br />
   <label for="rating">Please Enter A Rating:</label>
-  <input name="rating" type="number" ngModel /><br />
+  <input name="rating" type="number" min="0" max="10" ngModel /><br />
   <label for="experience">How Was The Experience?</label>
   <input name="experience" type="text" ngModel /><br />
   <button>Log Passport Entry</button>

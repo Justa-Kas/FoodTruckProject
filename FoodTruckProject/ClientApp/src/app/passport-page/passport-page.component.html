@@ -1,9 +1,10 @@
 <div id="page" *ngIf="!updatedPage">
   <h4>Welcome To Your Passport</h4>
 </div>
-  <button *ngIf="pageCounter > 0 && !updatedPage" (click)="resetPage()">Edit Page</button>
-  <button *ngIf="pageCounter > 0 && !updatedPage" (click)="previousPage(pageCounter -1)">Previous Page</button>
-  <button *ngIf="pageCounter < Passport.length && !updatedPage" (click)="forwardPage(pageCounter)">Next Page</button>
+<button *ngIf="pageCounter > 0 && !updatedPage" (click)="resetPage()">Edit Page</button>
+<button *ngIf="pageCounter > 0 && !updatedPage" (click)="previousPage(pageCounter -1)">Previous Page</button>
+<button *ngIf="pageCounter < Passport.length && !updatedPage" (click)="forwardPage(pageCounter)">Next Page</button>
+
 
 
 <div *ngIf="updatedPage == true">
@@ -12,12 +13,13 @@
     <input name="dateVisited" type="date" ngModel /><br />
     <label for="foodEaten">What Did You Eat?</label>
     <input name="foodEaten" type="text" ngModel /><br />
-    <label for="rating">Please Enter A Rating:</label>
+    <label for="rating" min="0" max="10">Please Enter A Rating:</label>
     <input name="rating" type="number" ngModel /><br />
     <label for="experience">How Was The Experience?</label>
     <input name="experience" type="text" ngModel /><br />
-    <button>Update Passport Entry</button>
+    <button value = "Refresh" onClick="window.location.reload(true)">Update Passport Entry</button>
   </form>
+  <button value = "Refresh" onClick="window.location.reload(true)">Cancel</button>
 </div>
 
 

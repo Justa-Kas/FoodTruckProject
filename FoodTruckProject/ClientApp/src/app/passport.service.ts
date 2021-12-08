@@ -29,9 +29,5 @@ export class PassportService {
     return this.httpservice.put(this.baseUrl + `api/PassportPage/editPage?businessId=${_businessId}&businessName=${_businessName}&rating=${_rating}&foodEaten=${_fEaten}&experience=${_experience}&dateVisited=${_date}`, {});
   }
 
-  //updatePassportPage(): any {
-  //  return this.httpservice.put(this.baseUrl + `api/PassportPage/editPage`, {});
-  //}
-
 }
 

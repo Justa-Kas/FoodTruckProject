@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { PassportService } from '../passport.service';
 import { passportPage } from '../passportPage';
 import { FoodTruck } from '../TruckList';
@@ -13,11 +13,11 @@ import { FoodTruck } from '../TruckList';
 /** passportPage component*/
 export class PassportPageComponent {
     /** passportPage ctor */
-  constructor(private passportService: PassportService, private router: ActivatedRoute) {
+  constructor(private passportService: PassportService, private router: ActivatedRoute, private routing: Router) {
 
   }
 
-  Passport: passportPage[] = [];
+  public Passport: passportPage[] = [];
   newPage: passportPage = {} as passportPage;
   updatedPage: boolean = false;
   Truck: FoodTruck = {} as FoodTruck;
@@ -43,7 +43,7 @@ export class PassportPageComponent {
     })
   }
 
-
+  //Check if needed to delete - admin function?
   deletePassportPage(id: number): void {
     this.passportService.deletePassportPage(id).subscribe((response: any) => {
       this.getAllPages();
@@ -79,6 +79,7 @@ export class PassportPageComponent {
     app.innerHTML = passInfo;
     }
   }
+
   editPassportPage(form: NgForm): void {
 
     let newPage: passportPage = {
@@ -97,13 +98,11 @@ export class PassportPageComponent {
       console.log(this.onePage);
       this.Passport.push(this.onePage);
       this.updatedPage = false;
-
     })
-   // this.routing.navigate(['/passport']);
   }
 
   resetPage(): void {
-    this.updatedPage = true;
+    this.updatedPage = !this.updatedPage;
   }
 
 

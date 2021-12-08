@@ -13,7 +13,7 @@ using System.Security.Claims;
 using System.Threading.Tasks;
 
 namespace FoodTruckProject.Controllers
-{   //[Authorize]
+{   [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class PassportPageController : ControllerBase

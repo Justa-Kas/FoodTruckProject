@@ -37,9 +37,6 @@ import { ProfileComponent } from './profile/profile.component';
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
     HttpClientModule,
-    //AgmCoreModule.forRoot({
-    //  apiKey: Secret.gApiKey
-    //}),
     FormsModule,
     ApiAuthorizationModule,
     RouterModule.forRoot([
@@ -47,7 +44,7 @@ import { ProfileComponent } from './profile/profile.component';
       { path: 'counter', component: CounterComponent },
       { path: 'fetch-data', component: FetchDataComponent, canActivate: [AuthorizeGuard] },
       { path: 'food-trucks', component: FoodTrucksComponent },
-      { path: 'passport', component: PassportPageComponent },
+      { path: 'passport', component: PassportPageComponent, canActivate: [AuthorizeGuard] },
       { path: 'add-page/:bid/:bname', component: NewPageComponent },
       { path: 'wish-list', component: WishListComponent, canActivate: [AuthorizeGuard] },
       { path: 'user-profile', component: ProfileComponent, canActivate: [AuthorizeGuard] }
