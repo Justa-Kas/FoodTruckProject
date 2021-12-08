@@ -20,6 +20,7 @@ export class ProfileComponent {
   currentProfile: Profile = {} as Profile;
   public userID: string = '';
   public profileExists: boolean = true;
+  displayEdit: boolean = false;
 
 
   ngOnInit(): void {
@@ -59,7 +60,44 @@ export class ProfileComponent {
     this.profileservice.getProfile().subscribe((response: any) => {
       this.currentProfile = response;
       console.log(response);
-      console.log(response.faveFood)
     })
+  }
+
+  resetForm(): void {
+    this.displayEdit = !this.displayEdit;
+}
+
+  updateUserProfile(form: NgForm): void {
+    console.log('method working')
+    let Name: string = form.form.value.name;
+    let Allergies: string = form.form.value.allergies;
+    let Diet: string = form.form.value.diet;
+    let FoodieRating: number = form.form.value.foodierating;
+    console.log(FoodieRating);
+    let FavFood: string = form.form.value.favfood;
+
+    if (Name == "") {
+      Name = this.currentProfile.name;
+    }
+    if (Allergies == "") {
+      Allergies = this.currentProfile.allergies;
+    }
+    if (Diet == "") {
+      Diet = this.currentProfile.diet;
+    }
+    if (!FoodieRating) {
+      FoodieRating = this.currentProfile.foodieRating;
+    }
+    if (FavFood == "") {
+      FavFood = this.currentProfile.faveFood;
+    }
+
+    this.profileservice.updateProfile(Name, Allergies, Diet, FoodieRating, FavFood).subscribe((response: any) => {
+      console.log('update working');
+      this.currentProfile = response;
+      console.log(response);
+      this.displayEdit = false;
+      //this.routing.navigate(['/user-profile']);
+    });
   }
 }

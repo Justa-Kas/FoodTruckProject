@@ -1,12 +1,13 @@
-<div *ngIf="profileExists; else elseBlock">
+<div *ngIf="profileExists && !displayEdit" id="profile-display">
   <h4>{{ currentProfile.name }}</h4>
   <p>{{ currentProfile.allergies }}</p>
   <p>{{ currentProfile.diet }}</p>
   <p>{{ currentProfile.foodieRating }}</p>
   <p>{{ currentProfile.faveFood }}</p>
+  <button (click)="resetForm()">Edit Profile</button>
 </div>
 
-<ng-template #elseBlock>
+<div *ngIf="!profileExists && !displayEdit">
     <form #addProfile="ngForm" (ngSubmit)="createNewProfile(addProfile)">
     <label for="name">Preferred name: </label>
     <input type="text" name="name" ngModel required />
@@ -25,4 +26,23 @@
     <br />
     <button value = "Refresh" onClick="window.location.reload(true)">Create Profile</button>
   </form>
-</ng-template>
+</div>
+
+<form *ngIf="displayEdit" #editProfile="ngForm" (ngSubmit)="updateUserProfile(editProfile)">
+  <label for="name">Preferred name: </label>
+  <input type="text" name="name" placeholder="{{ currentProfile.name }}" ngModel required />
+  <br />
+  <label for="allergies">List any allergies: </label>
+  <input type="text" name="allergies" placeholder="{{ currentProfile.allergies }}" ngModel />
+  <br />
+  <label for="diet">Any dietary preferances? </label>
+  <input type="text" name="diet" placeholder="{{ currentProfile.diet }}" ngModel />
+  <br />
+  <label for="foodierating">How much of a Foodie are you? </label>
+  <input type="number" name="foodierating" placeholder="{{ currentProfile.foodieRating }}" ngModel />
+  <br />
+  <label for="favfood">What would you eat every day if you could? </label>
+  <input type="text" name="favfood" placeholder="{{ currentProfile.faveFood }}" ngModel />
+  <br />
+  <button>Save Changes</button>
+</form>

@@ -20,4 +20,8 @@ export class UserProfileService {
   checkUser(uid: string): any {
     return this.http.get(this.baseUrl + `api/UserProfile/isUser?userid=${uid}`);
   }
+
+  updateProfile(_name: string, _allergies: string, _diet: string, _foodieRating: number, _favFood: string): any {
+    return this.http.put(this.baseUrl + `api/UserProfile/update?name=${_name}&allergies=${_allergies}&diet=${_diet}&foodieRating=${_foodieRating}&faveFood=${_favFood}`, {});
+  }
 }

@@ -60,12 +60,23 @@ namespace FoodTruckProject.Controllers
             return this.context.UserProfiles.Any(P => P.UserId == userid);
         }
 
-        //[HttpPut("userProfile/update/{id}")]
-        //public UserProfile UpdateUserProfile(int id)
-        //{
-        //    ClaimsPrincipal currentUser = this.User;
+        [HttpPut("update")]
+        public UserProfile UpdateUserProfile(string name, string allergies, string diet, int foodieRating, string faveFood)
+        {
+            ClaimsPrincipal currentUser = this.User;
+            string currentUserID = currentUser.FindFirst(ClaimTypes.NameIdentifier).Value;
+            UserProfile updatedProfile = context.UserProfiles.Where(P => P.UserId == currentUserID).Single();
+            updatedProfile.Name = name;
+            updatedProfile.Allergies = allergies;
+            updatedProfile.Diet = diet;
+            updatedProfile.FoodieRating = foodieRating;
+            updatedProfile.FaveFood = faveFood;
 
-        //    string currentUserID = currentUser.FindFirst(ClaimTypes.NameIdentifier).Value;
-        //}
+            context.UserProfiles.Update(updatedProfile);
+            context.SaveChanges();
+
+            return updatedProfile;
+        }
+
     }
 }
