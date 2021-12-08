@@ -24,8 +24,28 @@ namespace FoodTruckProject.Controllers
             StreamReader rd = new StreamReader(response.GetResponseStream());
             string json = rd.ReadToEnd();
             rd.Close();
-            FoodTruckAPI result = JsonConvert.DeserializeObject<FoodTruckAPI>(json);
-            return result;
+
+            try
+            {
+                FoodTruckAPI result = JsonConvert.DeserializeObject<FoodTruckAPI>(json);
+                return result;
+            }
+            catch( Exception e)
+            {
+                FoodTruckAPI result = new FoodTruckAPI()
+                {
+                    businesses = { },
+                    total = 0,
+                    region = {
+                    center =
+                        {
+                            longitude = 0,
+                            latitude = 0
+                        }
+                    }
+                };
+                return result;
+            }
         }
 
         [HttpGet("TruckDetails/{bid}")]

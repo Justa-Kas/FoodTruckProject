@@ -14,8 +14,13 @@
     </div>
   </div>
 </div>
+<div *ngIf="cityTrucks.length > 0; else elseblock">
+  <h1>All Food Trucks In {{ city }}</h1>
+</div>
+<ng-template #elseblock>
+  <h1>No Food Trucks To Display</h1>
+</ng-template>
 
-<h1>All food trucks in {{ city }}</h1>
 <br />
 <br />
 <div *ngFor="let T of cityTrucks">

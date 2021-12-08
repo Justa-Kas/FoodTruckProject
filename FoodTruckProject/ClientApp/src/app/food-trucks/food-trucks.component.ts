@@ -48,8 +48,14 @@ export class FoodTrucksComponent {
       console.log(this.TrucksObj);
 
       this.cityTrucks = this.TrucksObj.businesses;
-      this.city = this.cityTrucks[0].location.city;
-      console.log(this.cityTrucks);
+      if (this.cityTrucks.length == 0) {
+        console.log('error, no food trucks here');
+      }
+      else {
+        this.city = this.cityTrucks[0].location.city;
+        console.log(this.cityTrucks);
+      }
+
     })
   }
 
@@ -65,9 +71,11 @@ export class FoodTrucksComponent {
     console.log('address=', form.form.value.address); 
     this.geomapservice.getGeoLocation(form.form.value.address).subscribe((response: any) => {
       this.geoResults = response;
+      console.log('test to check:');
       console.log(this.geoResults);
       this.getLat = this.geoResults.results[0].geometry.location.lat;
       this.getLong = this.geoResults.results[0].geometry.location.lng;
+
       console.log(this.getLat, this.getLong);
 
       this.loadMap();
