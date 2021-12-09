@@ -40,6 +40,7 @@ export class FoodTrucksComponent {
   geoResults: geoMap = {} as geoMap;
   WishList: WishListItem[] = [];
   isInWishList: boolean = false;
+  filteredTrucks: FoodTruck[] = [];
 
   ngOnInit(): void {
     this.loadDefaultMap();
@@ -56,13 +57,16 @@ export class FoodTrucksComponent {
       this.cityTrucks = this.TrucksObj.businesses;
       if (this.cityTrucks.length == 0) {
         console.log('error, no food trucks here');
+        this.filteredTrucks = [];
       }
       else {
         this.city = this.cityTrucks[0].location.city;
         console.log(this.cityTrucks);
+        this.filteredTrucks = this.cityTrucks;
       }
 
       this.loadMap();
+      
 
     })
   }
@@ -150,12 +154,18 @@ export class FoodTrucksComponent {
         draggable: true,
         animation: window['google'].maps.Animation.DROP,
       });
+
+      let addressString: string = '';
+      T.location.display_address.forEach(s => {
+        addressString + s;
+      })
+
       var contentString = '<div id="content">' +
         '<div id="siteNotice">' +
         '</div>' +
         `<h3 id="thirdHeading" class="thirdHeading">${T.name}</h3>` +
         '<div id="bodyContent">' +
-        `<p>${T.location.display_address[0]}, ${T.location.display_address[1]}</p>` +
+        `<p>${addressString}</p>` +
         `<a target="_blank" rel="noopener noreferrer" href=${T.url}>Link to Yelp!</a>` +
         '</div>' +
         '</div>';
@@ -200,9 +210,11 @@ export class FoodTrucksComponent {
       console.log(response);
       //this.routing.navigate(['/wish-list']);
     });
-
-    
   }
 
+  filterTrucks(input: string): void {
+    this.filteredTrucks = this.cityTrucks.filter(T => T.name.toLowerCase().includes(input.toLowerCase()));
+    console.log(this.filteredTrucks);
+  }
 
 }

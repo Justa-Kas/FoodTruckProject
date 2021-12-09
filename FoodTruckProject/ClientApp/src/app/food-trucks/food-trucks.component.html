@@ -14,6 +14,7 @@
     </div>
   </div>
 </div>
+<br />
 <div *ngIf="cityTrucks.length > 0; else elseblock">
   <h1>All Food Trucks Near {{ city }}</h1>
 </div>
@@ -22,8 +23,12 @@
 </ng-template>
 
 <br />
+
+<input onfocus="this.value=''" size="100" (input)="filterTrucks(filter.value)" #filter name="filter" id="filter" placeholder="Search for trucks" />
+
 <br />
-<div *ngFor="let T of cityTrucks">
+
+<div *ngFor="let T of filteredTrucks">
   <h3>{{ T.name }}</h3>
   <img src="{{ T.image_url }}" height="250" width="250" alt="yummy food image" />
   <h5 *ngIf="T.price != null">Price: {{ T.price }}</h5>

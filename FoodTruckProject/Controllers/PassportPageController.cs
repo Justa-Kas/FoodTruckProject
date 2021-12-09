@@ -86,8 +86,9 @@ namespace FoodTruckProject.Controllers
         [HttpPut("editPage")]
         public PassportPage EditPassportPage(string businessId, string businessName, int rating, string foodEaten, string experience, DateTime dateVisited)
         {
-
-            PassportPage updatePage = context.PassportPages.Where(P => P.BusinessId == businessId).Single();
+            ClaimsPrincipal currentUser = this.User;
+            string currentUserID = currentUser.FindFirst(ClaimTypes.NameIdentifier).Value;
+            PassportPage updatePage = context.PassportPages.Where(P => P.BusinessId == businessId && P.UserId == currentUserID).Single();
             updatePage.BusinessId = businessId;
             updatePage.BusinessName = businessName;
             updatePage.Rating = rating;

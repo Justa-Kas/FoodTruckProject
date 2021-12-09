@@ -24,6 +24,7 @@ export class PassportPageComponent {
   onePage: passportPage = {} as passportPage;
   pageCounter: number = 0;
 
+
   ngOnInit(): void {
     this.getAllPages();
     this.pageCounter = 0;
@@ -117,6 +118,7 @@ export class PassportPageComponent {
   resetPage(): void {
     this.updatedPage = !this.updatedPage;
   }
+
 
 
 }
