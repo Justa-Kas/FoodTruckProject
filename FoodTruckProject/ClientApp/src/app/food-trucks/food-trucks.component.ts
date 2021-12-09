@@ -6,10 +6,13 @@ import { AuthorizeService } from '../../api-authorization/authorize.service';
 import { FoodTruckService } from '../food-truck.service';
 import { GeoMapService } from '../geo-map.service';
 import { geoMap } from '../geoMap';
+import { PassportService } from '../passport.service';
+import { passportPage } from '../passportPage';
 import { Secret } from '../Secret';
 import { FoodTruck, TruckList } from '../TruckList';
 import { WishListService } from '../wish-list.service';
 import { WishListComponent } from '../wish-list/wish-list.component';
+import { WishListItem } from '../WishList';
 
 @Component({
     selector: 'app-food-trucks',
@@ -19,28 +22,31 @@ import { WishListComponent } from '../wish-list/wish-list.component';
 /** FoodTrucks component*/
 export class FoodTrucksComponent {
     /** FoodTrucks ctor */
-  constructor(private foodtruckservice: FoodTruckService, private router: ActivatedRoute, private geomapservice: GeoMapService, private authorizeservice: AuthorizeService, private wishlistservice:WishListService, private routing : Router) {
+  constructor(private foodtruckservice: FoodTruckService, private router: ActivatedRoute, private geomapservice: GeoMapService, private authorizeservice: AuthorizeService, private wishlistservice:WishListService, private routing : Router, private passportService: PassportService) {
 
   }
-
-  ngOnInit(): void {
-    this.loadDefaultMap();
-    this.isAuthenticated = this.authorizeservice.isAuthenticated();
-  }
-
-  public isAuthenticated: Observable<boolean>;
-
-
-  city: string = "";
-  //lat: number = 42.331429;
-  //long: number = -83.045753;
-
 
   TrucksObj: TruckList = {} as TruckList;
   cityTrucks: FoodTruck[] = [];
   address: string = 'detroit'; //ROUTEPARAMS FROM USER LOCATION
   getLat: number = 0;
   getLong: number = 0;
+  city: string = "";
+  //lat: number = 42.331429;
+  //long: number = -83.045753;
+  public isAuthenticated: Observable<boolean>;
+  public Passport: passportPage[] = [];
+  isInPassport: boolean = false;
+  geoResults: geoMap = {} as geoMap;
+  WishList: WishListItem[] = [];
+  isInWishList: boolean = false;
+
+  ngOnInit(): void {
+    this.loadDefaultMap();
+    this.isAuthenticated = this.authorizeservice.isAuthenticated();
+    this.isInPassport = false;
+    this.isInWishList = false;
+  }
 
   getAllTrucks(lati:number, longi : number): void {
     this.foodtruckservice.getCityFoodTrucks(lati,longi).subscribe((response: any) => {
@@ -65,7 +71,42 @@ export class FoodTrucksComponent {
     this.geomapservice.initMap(this.mapElement, this.getLat, this.getLong);
   }
 
-  geoResults: geoMap = {} as geoMap;
+  getAllPages(bId: string, name: string): void {
+    this.passportService.getAllPages().subscribe((response: any) => {
+      this.Passport = response;
+      this.Passport.forEach(E => {
+        if (E.businessId == bId) {
+          this.isInPassport = true;
+        }
+      })
+      if (this.isInPassport == false) {
+        this.routing.navigate(['/add/bId/name']);
+      }
+      else {
+        console.log("Already In Passport");
+        alert("Already In Passport, Click Ok To Continue.")
+      }
+    })
+  }
+
+  buildWishList(bId: string, name: string): void {
+    this.wishlistservice.getWishList().subscribe((response: any) => {
+      this.WishList = response;
+      console.log(response);
+      this.WishList.forEach(E => {
+        if (E.businessId == bId) {
+          this.isInWishList = true;
+        }
+      })
+      if (this.isInWishList == false) {
+        this.addToWishList(bId, name);
+      }
+      else {
+        console.log("Already In Wish List");
+        alert("Already In Wish List, Click Ok To Continue.")
+      }
+    });
+  }
 
   getLocation(form: NgForm): void {
     console.log('address=', form.form.value.address); 

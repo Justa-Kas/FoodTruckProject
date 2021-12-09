@@ -50,6 +50,16 @@ export class PassportPageComponent {
     })
   }
 
+
+  displayDate(): string {
+    let index: number = (this.onePage.dateVisited + "").indexOf("T");
+    let dateOf = (this.onePage.dateVisited + "").substring(0, index);
+   /* let time = (this.onePage.dateVisited + "").substring(index + 1);*/
+    //console.log(time);
+
+    return dateOf;
+  }
+
   forwardPage(i: number): void {
     const app = document.getElementById('page');
     this.pageCounter++;
@@ -60,7 +70,7 @@ export class PassportPageComponent {
     this.onePage = this.Passport[i];
     console.log(this.Passport[i]);
     let passInfo: string = `<h4> ${this.onePage.businessName}</h4>` + `<h5> ${this.onePage.rating}</h5>` + `<h5> ${this.onePage.foodEaten}</h5>` +
-      `<h5> ${this.onePage.experience}</h5>` + `<h5> ${this.onePage.dateVisited}</h5>`;
+      `<h5> ${this.onePage.experience}</h5>` + `<h5> ${this.displayDate()}</h5>`;
     app.innerHTML = passInfo;
     }
   }
@@ -75,7 +85,7 @@ export class PassportPageComponent {
     this.onePage = this.Passport[i-1];
     console.log(this.Passport[i-1]);
     let passInfo: string = `<h4> ${this.onePage.businessName}</h4>` + `<h5> ${this.onePage.rating}</h5>` + `<h5> ${this.onePage.foodEaten}</h5>` +
-      `<h5> ${this.onePage.experience}</h5>` + `<h5> ${this.onePage.dateVisited}</h5>`;
+      `<h5> ${this.onePage.experience}</h5>` + `<h5> ${this.displayDate()}</h5>`;
     app.innerHTML = passInfo;
     }
   }

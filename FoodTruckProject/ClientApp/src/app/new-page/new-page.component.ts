@@ -17,27 +17,20 @@ export class NewPageComponent {
 
   }
 
-  public Passport: passportPage[] = [];
-  isInPassport: boolean = false;
+/*  public Passport: passportPage[] = [];*/
+/*  isInPassport: boolean = false;*/
 
-  getAllPages(): void {
-    this.passportService.getAllPages().subscribe((response: any) => {
-      this.Passport = response;
+  //getAllPages(): void {
+  //  this.passportService.getAllPages().subscribe((response: any) => {
+  //    this.Passport = response;
 
-    })
-  }
+  //  })
+  //}
 
   addPassportPage(form: NgForm): void {
     const routeParams = this.router.snapshot.paramMap;
     let bId: string = String(routeParams.get("bid"));
     let bName: string = String(routeParams.get("bname"));
-
-    this.Passport.forEach(E => {
-      if (E.businessId == bId) {
-        this.isInPassport = true;
-      }
-    })
-
 
     let newPage: passportPage = {
       id: 0,

@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 import { FoodTruckService } from '../food-truck.service';
+import { PassportService } from '../passport.service';
 import { passportPage } from '../passportPage';
 import { FoodTruck } from '../TruckList';
 import { WishListService } from '../wish-list.service';
@@ -13,19 +15,22 @@ import { WishListItem } from '../WishList';
 /** WishList component*/
 export class WishListComponent {
     /** WishList ctor */
-    constructor(private wishlistservice:WishListService, private foodtruckservice:FoodTruckService) {
+    constructor(private wishlistservice:WishListService, private foodtruckservice:FoodTruckService, private routing: Router, private passportService: PassportService) {
 
   }
-  ngOnInit(): void{
 
-    this.buildWishList();
-}
-
+  Passport: passportPage[] = [];
   WishList: WishListItem[] = [];
   TruckItems: FoodTruck[] = [];
   indexNum: number = 0;
   foodTruck: FoodTruck = {} as FoodTruck;
-  
+  isInPassport: boolean = false;
+
+  ngOnInit(): void{
+    this.buildWishList();
+    this.isInPassport = false;
+}
+
   deleteFromWishList(id: number): void {
     this.wishlistservice.removeFromWishList(id).subscribe((response: any) => {
       console.log(response);
@@ -43,6 +48,24 @@ export class WishListComponent {
       console.log(response);
       this.getAllTruckDetails();
     });
+  }
+
+  getAllPages(bId: string, name: string): void {
+    this.passportService.getAllPages().subscribe((response: any) => {
+      this.Passport = response;
+      this.Passport.forEach(E => {
+        if (E.businessId == bId) {
+          this.isInPassport = true;
+        }
+      })
+      if (this.isInPassport == false) {
+        this.routing.navigate(['/add/bId/name']);
+      }
+      else {
+        console.log("Already In Passport");
+        alert("Already In Passport, Click Ok To Continue.")
+      }
+    })
   }
 
   getAllTruckDetails(): void {

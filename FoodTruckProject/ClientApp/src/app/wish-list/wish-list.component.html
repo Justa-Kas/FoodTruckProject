@@ -6,5 +6,5 @@
   <br />
   <button (click)="deleteFromWishList(WishList[i].id)">Delete From Wish List</button>
   <br />
-  <button routerLink="/add-page/{{ W.id }}/{{ W.name }}">Add To Passport</button>
+  <button (click)="getAllPages( W.id, W.name)">Add To Passport</button>
 </div>

@@ -16,7 +16,7 @@
     <label for="rating" min="0" max="10">Please Enter A Rating:</label>
     <input name="rating" type="number" ngModel /><br />
     <label for="experience">How Was The Experience?</label>
-    <input name="experience" type="text" ngModel /><br />
+    <input name="experience" type="text" ngModel="{{ onePage.experience }}" /><br />
     <button value = "Refresh" onClick="window.location.reload(true)">Update Passport Entry</button>
   </form>
   <button value = "Refresh" onClick="window.location.reload(true)">Cancel</button>
