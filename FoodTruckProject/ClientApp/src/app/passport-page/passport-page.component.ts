@@ -103,6 +103,8 @@ export class PassportPageComponent {
       experience: form.form.value.experience,
       dateVisited: form.form.value.dateVisited
     }
+    console.log("Rating:");
+    console.log(newPage.rating);
     this.passportService.updatePassportPage(this.onePage.businessId, this.onePage.businessName, newPage.rating, newPage.foodEaten, newPage.experience, newPage.dateVisited).subscribe((response: any) => {
       this.onePage = response;
       console.log(this.onePage);

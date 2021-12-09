@@ -38,7 +38,7 @@ export class WishListComponent {
         this.indexNum = this.TruckItems.findIndex(w => (w.id == this.WishList[i].businessId));
       }
       this.TruckItems.splice(this.indexNum, 1);
-      this.buildWishList();
+
     });
   }
 
@@ -60,11 +60,13 @@ export class WishListComponent {
       })
       if (this.isInPassport == false) {
         this.routing.navigate([`/add-page/${bId}/${name}`]);
+        alert("Added to Passport")
       }
       else {
         console.log("Already In Passport");
         alert("Already In Passport, Click Ok To Continue.")
       }
+      this.isInPassport = false;
     })
   }
 

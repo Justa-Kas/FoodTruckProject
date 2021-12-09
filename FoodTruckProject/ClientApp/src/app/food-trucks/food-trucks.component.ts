@@ -88,6 +88,7 @@ export class FoodTrucksComponent {
         console.log("Already In Passport");
         alert("Already In Passport, Click Ok To Continue.")
       }
+      this.isInPassport = false;
     })
   }
 
@@ -102,11 +103,13 @@ export class FoodTrucksComponent {
       })
       if (this.isInWishList == false) {
         this.addToWishList(bId, name);
+        alert("Added To Wish List!")
       }
       else {
         console.log("Already In Wish List");
         alert("Already In Wish List, Click Ok To Continue.")
       }
+      this.isInWishList = false;
     });
   }
 
