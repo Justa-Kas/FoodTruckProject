@@ -80,7 +80,7 @@ export class FoodTrucksComponent {
         }
       })
       if (this.isInPassport == false) {
-        this.routing.navigate(['/add/bId/name']);
+        this.routing.navigate([`/add-page/${bId}/${name}`]);
       }
       else {
         console.log("Already In Passport");

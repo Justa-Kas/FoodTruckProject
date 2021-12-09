@@ -108,6 +108,7 @@ export class PassportPageComponent {
       console.log(this.onePage);
       this.Passport.push(this.onePage);
       this.updatedPage = false;
+      this.forwardPage(this.pageCounter--);
     })
   }
 

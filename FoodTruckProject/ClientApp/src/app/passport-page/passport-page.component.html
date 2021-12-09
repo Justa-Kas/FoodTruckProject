@@ -1,5 +1,7 @@
-<div id="page" *ngIf="!updatedPage">
-  <h4>Welcome To Your Passport</h4>
+<div id="page">
+  <div *ngIf="!updatedPage">
+    <h4>Welcome To Your Passport</h4>
+  </div>
 </div>
 <button *ngIf="pageCounter > 0 && !updatedPage" (click)="resetPage()">Edit Page</button>
 <button *ngIf="pageCounter > 0 && !updatedPage" (click)="previousPage(pageCounter -1)">Previous Page</button>
@@ -10,14 +12,14 @@
 <div *ngIf="updatedPage == true">
   <form #editPage="ngForm" (ngSubmit)="editPassportPage(editPage)">
     <label for="dateVisited">Date Visited:</label>
-    <input name="dateVisited" type="date" ngModel /><br />
+    <input name="dateVisited" type="date" [ngModel]="displayDate()" /><br />
     <label for="foodEaten">What Did You Eat?</label>
-    <input name="foodEaten" type="text" ngModel /><br />
+    <input name="foodEaten" type="text" [ngModel]="onePage.foodEaten" /><br />
     <label for="rating" min="0" max="10">Please Enter A Rating:</label>
-    <input name="rating" type="number" ngModel /><br />
+    <input name="rating" type="number" [ngModel]="onePage.rating" /><br />
     <label for="experience">How Was The Experience?</label>
-    <input name="experience" type="text" ngModel="{{ onePage.experience }}" /><br />
-    <button value = "Refresh" onClick="window.location.reload(true)">Update Passport Entry</button>
+    <input name="experience" type="text" [ngModel]="onePage.experience" /><br />
+    <button>Update Passport Entry</button>
   </form>
   <button value = "Refresh" onClick="window.location.reload(true)">Cancel</button>
 </div>
