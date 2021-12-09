@@ -106,9 +106,9 @@ export class PassportPageComponent {
     this.passportService.updatePassportPage(this.onePage.businessId, this.onePage.businessName, newPage.rating, newPage.foodEaten, newPage.experience, newPage.dateVisited).subscribe((response: any) => {
       this.onePage = response;
       console.log(this.onePage);
-      this.Passport.push(this.onePage);
+      //this.Passport.push(this.onePage);
       this.updatedPage = false;
-      this.forwardPage(this.pageCounter--);
+      //this.forwardPage(this.pageCounter--);
     })
   }
 

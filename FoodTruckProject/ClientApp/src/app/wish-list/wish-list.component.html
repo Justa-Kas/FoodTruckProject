@@ -2,7 +2,7 @@
 <div *ngFor="let W of TruckItems;let i=index">
   <h5>{{ W.name }}</h5>
   {{ W.location.display_address[0] }}, {{ W.location.display_address[1] }}
-  <a target="_blank" rel="noopener noreferrer" href="{{ W.url }}">Link To Website</a>
+  <a target="_blank" rel="noopener noreferrer" href="{{ W.url }}">Link To Yelp!</a>
   <br />
   <button (click)="deleteFromWishList(WishList[i].id)">Delete From Wish List</button>
   <br />

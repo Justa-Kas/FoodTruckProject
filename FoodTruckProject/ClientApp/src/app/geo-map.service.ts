@@ -16,14 +16,15 @@ export class GeoMapService {
   }
 
   apiUrl: string = 'https://maps.googleapis.com/maps/api/geocode/json?address=';
+  private static promise;
+  map: google.maps.Map;
 
   getGeoLocation(address: string): any {
     let finalUrl: string = this.apiUrl + address + '&key=' + Secret.gApiKey;
     console.log(finalUrl);
     return this.httpservice.get(finalUrl);
   }
-  private static promise;
-  map: google.maps.Map;
+
 
   public static load() {
     if (!GeoMapService.promise) { // load once

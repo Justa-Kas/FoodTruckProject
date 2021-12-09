@@ -62,6 +62,8 @@ export class FoodTrucksComponent {
         console.log(this.cityTrucks);
       }
 
+      this.loadMap();
+
     })
   }
 
@@ -117,9 +119,8 @@ export class FoodTrucksComponent {
       this.getLat = this.geoResults.results[0].geometry.location.lat;
       this.getLong = this.geoResults.results[0].geometry.location.lng;
 
+      this.getAllTrucks(this.getLat, this.getLong);
       console.log(this.getLat, this.getLong);
-
-      this.loadMap();
       
     });
   }
@@ -128,14 +129,42 @@ export class FoodTrucksComponent {
 
   loadMap = () => {
 
-    this.getAllTrucks(this.getLat, this.getLong);
+    
     console.log(this.getLat, this.getLong);
 
     var map = new window['google'].maps.Map(this.mapElement.nativeElement, {
       center: { lat: this.getLat, lng: this.getLong },
-      zoom: 8
+      zoom: 12
     });
 
+    console.log(this.cityTrucks.length)
+    this.cityTrucks.forEach(T => {
+      console.log('entering loop')
+      var marker = new window['google'].maps.Marker({
+        position: { lat: T.coordinates.latitude, lng: T.coordinates.longitude },
+        map: map,
+        title: T.name,
+        draggable: true,
+        animation: window['google'].maps.Animation.DROP,
+      });
+      var contentString = '<div id="content">' +
+        '<div id="siteNotice">' +
+        '</div>' +
+        `<h3 id="thirdHeading" class="thirdHeading">${T.name}</h3>` +
+        '<div id="bodyContent">' +
+        `<p>${T.location.display_address[0]}, ${T.location.display_address[1]}</p>` +
+        `<a target="_blank" rel="noopener noreferrer" href=${T.url}>Link to Yelp!</a>` +
+        '</div>' +
+        '</div>';
+
+      var infowindow = new window['google'].maps.InfoWindow({
+        content: contentString
+      });
+
+      marker.addListener('click', function () {
+        infowindow.open(map, marker);
+      });
+    })
     var marker = new window['google'].maps.Marker({
       position: { lat: this.getLat, lng: this.getLong },
       map: map,
