@@ -17,25 +17,18 @@ export class NewPageComponent {
 
   }
 
-/*  public Passport: passportPage[] = [];*/
-/*  isInPassport: boolean = false;*/
+  routeParams = this.router.snapshot.paramMap;
+  bId: string = String(this.routeParams.get("bid"));
+  bName: string = String(this.routeParams.get("bname"));
 
-  //getAllPages(): void {
-  //  this.passportService.getAllPages().subscribe((response: any) => {
-  //    this.Passport = response;
-
-  //  })
-  //}
 
   addPassportPage(form: NgForm): void {
-    const routeParams = this.router.snapshot.paramMap;
-    let bId: string = String(routeParams.get("bid"));
-    let bName: string = String(routeParams.get("bname"));
+
 
     let newPage: passportPage = {
       id: 0,
-      businessId: bId,
-      businessName: bName,
+      businessId: this.bId,
+      businessName: this.bName,
       userId: "",
       rating: form.form.value.rating,
       foodEaten: form.form.value.foodEaten,

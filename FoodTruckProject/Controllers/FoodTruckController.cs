@@ -34,15 +34,9 @@ namespace FoodTruckProject.Controllers
             {
                 FoodTruckAPI result = new FoodTruckAPI()
                 {
-                    businesses = { },
+                    businesses = new Business[0],
                     total = 0,
-                    region = {
-                    center =
-                        {
-                            longitude = 0,
-                            latitude = 0
-                        }
-                    }
+                    region = new Region()
                 };
                 return result;
             }

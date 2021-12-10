@@ -58,14 +58,14 @@ namespace FoodTruckProject.Controllers
 
         [HttpPost("addPassportPage")]
 
-        public PassportPage addPassportPage(string businessId, string businessName,int rating, string foodEaten, string experience, DateTime dateVisited)
+        public PassportPage addPassportPage(string businessId, string businessName,int rating, string foodEaten, string experience, DateTime dateVisited, string foodPic)
         {
             //grabbed current logged in user
             ClaimsPrincipal currentUser = this.User;
 
             string currentUserID = currentUser.FindFirst(ClaimTypes.NameIdentifier).Value;
 
-            PassportPage newPage = new PassportPage() { BusinessId = businessId, BusinessName = businessName, Rating = rating, FoodEaten= foodEaten, Experience = experience, DateVisited = dateVisited, UserId = currentUserID };
+            PassportPage newPage = new PassportPage() { BusinessId = businessId, BusinessName = businessName, Rating = rating, FoodEaten= foodEaten, Experience = experience, DateVisited = dateVisited, UserId = currentUserID, Picture = foodPic};
             this.context.PassportPages.Add(newPage);
             this.context.SaveChanges();
             return newPage;
@@ -84,7 +84,7 @@ namespace FoodTruckProject.Controllers
         }
 
         [HttpPut("editPage")]
-        public PassportPage EditPassportPage(string businessId, string businessName, int rating, string foodEaten, string experience, DateTime dateVisited)
+        public PassportPage EditPassportPage(string businessId, string businessName, int rating, string foodEaten, string experience, DateTime dateVisited, string foodPic)
         {
             ClaimsPrincipal currentUser = this.User;
             string currentUserID = currentUser.FindFirst(ClaimTypes.NameIdentifier).Value;
@@ -95,6 +95,7 @@ namespace FoodTruckProject.Controllers
             updatePage.FoodEaten = foodEaten;
             updatePage.Experience = experience;
             updatePage.DateVisited = dateVisited;
+            updatePage.Picture = foodPic;
 
             context.PassportPages.Update(updatePage);
             context.SaveChanges();

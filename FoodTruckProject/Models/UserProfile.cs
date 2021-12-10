@@ -19,6 +19,7 @@ namespace FoodTruckProject.Models
         public string Diet { get; set; }
         public int FoodieRating { get; set; }
         public string FaveFood { get; set; }
+        
        // public string FaveBusinessId { get; set; }
     }
 }

@@ -7,4 +7,5 @@ export interface passportPage{
   foodEaten: string;
   experience: string;
   dateVisited: Date;
+  //picture: string;
 }

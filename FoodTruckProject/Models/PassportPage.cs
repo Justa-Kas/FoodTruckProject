@@ -19,6 +19,7 @@ namespace FoodTruckProject.Models
         public string FoodEaten { get; set; }
         public string Experience { get; set; }
         public DateTime DateVisited { get; set; }
+        public string Picture { get; set; }
 
     }
 }
