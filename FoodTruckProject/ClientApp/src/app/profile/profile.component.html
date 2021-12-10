@@ -1,48 +1,42 @@
-<div *ngIf="profileExists && !displayEdit" id="profile-display">
-  <h4>{{ currentProfile.name }}</h4>
-  <p>{{ currentProfile.allergies }}</p>
-  <p>{{ currentProfile.diet }}</p>
-  <p>{{ currentProfile.foodieRating }}</p>
-  <p>{{ currentProfile.faveFood }}</p>
-  <button (click)="resetForm()">Edit Profile</button>
+<div class="d-flex justify-content-center">
+  <div class="shadow-lg mb-5 bg-white rounded ml-1 mt-4 d-flex justify-content-between" style="width:500px; height:500px">
+    <div></div>
+    <div class="text-center" *ngIf="profileExists && !displayEdit" id="profile-display">
+      <h3>{{ currentProfile.name }}</h3>
+      <h5>Allergies: {{ currentProfile.allergies }}</h5>
+      <h5>Dietary Restrictions: {{ currentProfile.diet }}</h5>
+      <h5>Foodie Rating: {{ currentProfile.foodieRating }}</h5>
+      <h5>Favorite Food: {{ currentProfile.faveFood }}</h5>
+    </div>
+    <div>
+      <button class="btn btn-link btn-floating btn-lg m-1 text-dark btn-block" (click)="resetForm()">
+        <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
+          <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z" />
+          <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z" />
+        </svg>
+      </button>
+    </div>
+
+  </div>
 </div>
 
-<div *ngIf="!profileExists && !displayEdit">
-    <form #addProfile="ngForm" (ngSubmit)="createNewProfile(addProfile)">
+  
+
+  <form *ngIf="displayEdit" #editProfile="ngForm" (ngSubmit)="updateUserProfile(editProfile)">
     <label for="name">Preferred name: </label>
-    <input type="text" name="name" ngModel required />
+    <input type="text" name="name" placeholder="{{ currentProfile.name }}" ngModel />
     <br />
     <label for="allergies">List any allergies: </label>
-    <input type="text" name="allergies" ngModel />
+    <input type="text" name="allergies" placeholder="{{ currentProfile.allergies }}" ngModel />
     <br />
     <label for="diet">Any dietary preferances? </label>
-    <input type="text" name="diet" ngModel />
+    <input type="text" name="diet" placeholder="{{ currentProfile.diet }}" ngModel />
     <br />
     <label for="foodierating">How much of a Foodie are you? </label>
-    <input type="number" name="foodierating" ngModel />
+    <input type="number" name="foodierating" placeholder="{{ currentProfile.foodieRating }}" ngModel />
     <br />
     <label for="favfood">What would you eat every day if you could? </label>
-    <input type="text" name="favfood" ngModel />
+    <input type="text" name="favfood" placeholder="{{ currentProfile.faveFood }}" ngModel />
     <br />
-    <button value = "Refresh" onClick="window.location.reload(true)">Create Profile</button>
+    <button>Save Changes</button>
   </form>
-</div>
-
-<form *ngIf="displayEdit" #editProfile="ngForm" (ngSubmit)="updateUserProfile(editProfile)">
-  <label for="name">Preferred name: </label>
-  <input type="text" name="name" placeholder="{{ currentProfile.name }}" ngModel />
-  <br />
-  <label for="allergies">List any allergies: </label>
-  <input type="text" name="allergies" placeholder="{{ currentProfile.allergies }}" ngModel />
-  <br />
-  <label for="diet">Any dietary preferances? </label>
-  <input type="text" name="diet" placeholder="{{ currentProfile.diet }}" ngModel />
-  <br />
-  <label for="foodierating">How much of a Foodie are you? </label>
-  <input type="number" name="foodierating" placeholder="{{ currentProfile.foodieRating }}" ngModel />
-  <br />
-  <label for="favfood">What would you eat every day if you could? </label>
-  <input type="text" name="favfood" placeholder="{{ currentProfile.faveFood }}" ngModel />
-  <br />
-  <button>Save Changes</button>
-</form>

@@ -38,8 +38,8 @@
   <div class="shadow-lg mb-5 bg-white rounded ml-1 mt-4 d-flex justify-content-between ">
     <div class="pt-0 px-3" *ngIf="updatedPage == true">
       <div class="d-flex justify-content-between">
-        <h4 class="mx-auto">Update Page</h4>
-        <button class="btn btn-link btn-floating btn-lg m-1 text-dark text-decoration-none" value="Refresh" onClick="window.location.reload(true)">
+        <h4 class=" pt-4 mx-auto pl-5">Update Page</h4>
+        <button class="btn btn-link btn-floating btn-lg m-1 text-dark text-decoration-none" (click)="resetPage()">
           <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-x-lg" viewBox="0 0 16 16">
             <path fill-rule="evenodd" d="M13.854 2.146a.5.5 0 0 1 0 .708l-11 11a.5.5 0 0 1-.708-.708l11-11a.5.5 0 0 1 .708 0Z" />
             <path fill-rule="evenodd" d="M2.146 2.146a.5.5 0 0 0 0 .708l11 11a.5.5 0 0 0 .708-.708l-11-11a.5.5 0 0 0-.708 0Z" />
