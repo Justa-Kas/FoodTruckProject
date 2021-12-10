@@ -18,6 +18,7 @@ export class ProfileComponent {
   }
 
   currentProfile: Profile = {} as Profile;
+  allAllergies: string[] = [];
   public userID: string = '';
   public profileExists: boolean = true;
   displayEdit: boolean = false;
@@ -29,9 +30,7 @@ export class ProfileComponent {
 
   checkUserID(): void {
     this.authorizeservice.getUser().subscribe((response: any) => {
-      console.log(response.sub);
       this.userID = response.sub;
-      console.log(this.userID);
       this.profileservice.checkUser(this.userID).subscribe((result: any) => {
         this.profileExists = result;
         console.log('checkUser working: ' + result);
@@ -52,6 +51,7 @@ export class ProfileComponent {
     this.profileservice.createProfile(Name, Allergies, Diet, FoodieRating, FavFood).subscribe((response: any) => {
       console.log(response);
       this.routing.navigate(['/user-profile']);
+      this.checkUserID();
     });
 
   }
@@ -69,6 +69,11 @@ export class ProfileComponent {
 
   updateUserProfile(form: NgForm): void {
     console.log('method working')
+    //let Allergies: string = '';
+    //if (form.form.value.dairy == true) {
+    //  Allergies += 'Dairy;';
+    //  console.log(Allergies);
+    //}
     let Name: string = form.form.value.name;
     let Allergies: string = form.form.value.allergies;
     let Diet: string = form.form.value.diet;
@@ -91,6 +96,8 @@ export class ProfileComponent {
     if (FavFood == "") {
       FavFood = this.currentProfile.faveFood;
     }
+
+    /*this.allAllergies = this.currentProfile.allergies.split(';');*/
 
     this.profileservice.updateProfile(Name, Allergies, Diet, FoodieRating, FavFood).subscribe((response: any) => {
       console.log('update working');
