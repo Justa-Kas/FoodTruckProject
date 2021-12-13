@@ -10,11 +10,32 @@
           <input class="ml-3 my-2" type="text" name="name" [ngModel]="currentProfile.name" />
           <br />
           <label for="allergies">List any allergies: </label>
-          <input type="text" name="allergies" [ngModel]="currentProfile.allergies" />
+          <!--<input type="text" name="allergies" [ngModel]="currentProfile.allergies" />
+  <br />-->
+          <label for="dairy">Dairy</label>
+          <input type="checkbox" id="dairy" name="dairy" [ngModel]="Dairy" />
           <br />
-          <!--<label for="dairy">Dairy</label>
-      <input type="checkbox" id="dairy" name="dairy" [ngModel]="Dairy" />
-      <br />-->
+          <label for="eggs">Eggs</label>
+          <input type="checkbox" id="eggs" name="eggs" [ngModel]="Eggs" />
+          <br />
+          <label for="peanuts">Peanuts</label>
+          <input type="checkbox" id="peanuts" name="peanuts" [ngModel]="Peanuts" />
+          <br />
+          <label for="treenuts">Tree Nuts</label>
+          <input type="checkbox" id="treenuts" name="treenuts" [ngModel]="TreeNuts" />
+          <br />
+          <label for="shellfish">Shellfish</label>
+          <input type="checkbox" id="shellfish" name="shellfish" [ngModel]="Shellfish" />
+          <br />
+          <label for="gluten">Gluten</label>
+          <input type="checkbox" id="gluten" name="gluten" [ngModel]="Gluten" />
+          <br />
+          <label for="soy">Soy</label>
+          <input type="checkbox" id="soy" name="soy" [ngModel]="Soy" />
+          <br />
+          <label for="otherAllergies">Other(separate with ';'): </label>
+          <input class="ml-3 my-2" type="text" name="otherAllergies" [ngModel]="otherAllergy" />
+          <br />
           <label for="diet">Any dietary preferances? </label>
           <input class="ml-3 my-2" type="text" name="diet" [ngModel]="currentProfile.diet" />
           <br />
@@ -32,13 +53,14 @@
       </div>
     </div>
 
+    <!-------------------------------display user profile--------------------------------------->
     <div class="d-flex justify-content-between" *ngIf="profileExists && !displayEdit" id="profile-display">
       <div class="mt-5 pl-5 text-left">
         <h3>Welcome {{ currentProfile.name }}!</h3>
-        <!--<div *ngFor="let A of allAllergies">
-          <h5>Allergies: {{ A }}</h5>
-        </div>-->
-        <h5>Allergies: {{ currentProfile.allergies }}</h5>
+        <!--<h3>Allergies: {{ currentProfile.allergies }}</h3>-->
+        <div *ngFor="let A of allAllergies">
+        <h5>{{ A }}</h5>
+      </div>
         <h5>Dietary Restrictions: {{ currentProfile.diet }}</h5>
         <h5>Foodie Rating: {{ currentProfile.foodieRating }}</h5>
         <h5>Favorite Food: {{ currentProfile.faveFood }}</h5>
@@ -55,20 +77,40 @@
       </div>
     </div>
 
-    <!--section for edit form-->
-
+    <!-------------------------------edit user profile--------------------------------------->
     <div *ngIf="displayEdit" class="text-center d-flex justify-content-between">
       <div class="mt-5 pl-5 text-left">
         <form #editProfile="ngForm" (ngSubmit)="updateUserProfile(editProfile)">
           <label for="name">Preferred name: </label>
           <input class="ml-3 my-2" type="text" name="name" [ngModel]="currentProfile.name" />
           <br />
-          <label for="allergies">List any allergies: </label>
-          <input type="text" name="allergies" [ngModel]="currentProfile.allergies" />
-          <br />
-          <!--<label for="dairy">Dairy</label>
+          <!--<label for="allergies">List any allergies: </label>
+  <input type="text" name="allergies" [ngModel]="currentProfile.allergies" />
+  <br />-->
+          <label for="dairy">Dairy</label>
           <input type="checkbox" id="dairy" name="dairy" [ngModel]="Dairy" />
-          <br />-->
+          <br />
+          <label for="eggs">Eggs</label>
+          <input type="checkbox" id="eggs" name="eggs" [ngModel]="Eggs" />
+          <br />
+          <label for="peanuts">Peanuts</label>
+          <input type="checkbox" id="peanuts" name="peanuts" [ngModel]="Peanuts" />
+          <br />
+          <label for="treenuts">Tree Nuts</label>
+          <input type="checkbox" id="treenuts" name="treenuts" [ngModel]="TreeNuts" />
+          <br />
+          <label for="shellfish">Shellfish</label>
+          <input type="checkbox" id="shellfish" name="shellfish" [ngModel]="Shellfish" />
+          <br />
+          <label for="gluten">Gluten</label>
+          <input type="checkbox" id="gluten" name="gluten" [ngModel]="Gluten" />
+          <br />
+          <label for="soy">Soy</label>
+          <input type="checkbox" id="soy" name="soy" [ngModel]="Soy" />
+          <br />
+          <label for="otherAllergies">Other(separate with ';'): </label>
+          <input class="ml-3 my-2" type="text" name="otherAllergies" [ngModel]="otherAllergy" />
+          <br />
           <label for="diet">Any dietary preferances? </label>
           <input class="ml-3 my-2" type="text" name="diet" [ngModel]="currentProfile.diet" />
           <br />
@@ -78,10 +120,10 @@
           <label for="favfood">What would you eat every day if you could? </label>
           <input class="ml-3 my-2" type="text" name="favfood" [ngModel]="currentProfile.faveFood" />
           <br />
-          <button
-                  title="Save"
-                  class="btn btn-link btn-dark btn-floating btn-lg m-1 text-light btn-block"
-                  >Save Changes</button>
+          <button title="Save"
+                  class="btn btn-link btn-dark btn-floating btn-lg m-1 text-light btn-block">
+            Save Changes
+          </button>
         </form>
       </div>
       <div>
