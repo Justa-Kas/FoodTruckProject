@@ -1,42 +1,79 @@
-<form #searchAddress="ngForm" (ngSubmit)="getLocation(searchAddress)">
-  <label for="address">Please enter a city, state or zip code:</label>
-  <input name="address" type="text" min="1" required ngModel/>
-  <button>Search</button>
-</form>
+<h2>Food Trucks Near You</h2>
+<br />
+<p>
+  To keep everyone safe, please wear face masks and follow local guidelines for physical distancing and staying home.
+  <a href="https://www.cdc.gov/coronavirus/2019-nCoV/index.html">Learn more <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-up-right-square" viewBox="0 0 16 16">
+  <path fill-rule="evenodd" d="M15 2a1 1 0 0 0-1-1H2a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V2zM0 2a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V2zm5.854 8.803a.5.5 0 1 1-.708-.707L9.243 6H6.475a.5.5 0 1 1 0-1h3.975a.5.5 0 0 1 .5.5v3.975a.5.5 0 1 1-1 0V6.707l-4.096 4.096z" />
+</svg></a>
+</p>
+<p>Enter your ZIP below to find foodtrucks now open and oferring delicious grub near you.</p>
 
-<div class="row mt-5">
+<div class="row mt-3">
   <div class="col-md-9 mx-auto">
-    <h2 class="text-left">Google Map</h2>
     <div class="card mt-3">
       <div class="card-body">
+        <div class="text-center">
+          <form #searchAddress="ngForm" (ngSubmit)="getLocation(searchAddress)">
+            <input class="ml-4" size="40" name="address" type="text" min="1" placeholder="Enter City, State, or ZIP" required ngModel />
+            <button title="Search"
+                    class="btn btn-dark btn-small">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+                <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" />
+              </svg>
+            </button>
+          </form>
+        </div>
         <div #mapRef style="width:100%;height:400px"></div>
       </div>
     </div>
   </div>
 </div>
 <br />
-<div *ngIf="cityTrucks.length > 0; else elseblock">
-  <h1>All Food Trucks Near {{ city }}</h1>
+<div *ngIf="cityTrucks.length > 0; else elseblock" class="text-center">
+  <h1 class="mb-3">All Food Trucks Near {{ city }}</h1>
+  <input onfocus="this.value=''" size="100" (input)="filterTrucks(filter.value)" #filter name="filter" id="filter" placeholder="Search for trucks" />
 </div>
 <ng-template #elseblock>
-  <h1>No Food Trucks To Display</h1>
+  <h1 class="text-center">No Food Trucks To Display</h1>
 </ng-template>
 
 <br />
 
-<input onfocus="this.value=''" size="100" (input)="filterTrucks(filter.value)" #filter name="filter" id="filter" placeholder="Search for trucks" />
+
 
 <br />
 
 <div *ngFor="let T of filteredTrucks">
-  <h3>{{ T.name }}</h3>
-  <img src="{{ T.image_url }}" height="250" width="250" alt="yummy food image" />
-  <h5 *ngIf="T.price != null">Price: {{ T.price }}</h5>
-  <h5>Rating: {{ T.rating }}/5</h5>
-  <a target="_blank" rel="noopener noreferrer" href= "{{ T.url }}">Link to Yelp!</a>
-  <button *ngIf="isAuthenticated | async" (click)="getAllPages(T.id , T.name)">Add To Passport</button>
-  <button *ngIf="isAuthenticated | async" (click)="buildWishList(T.id, T.name)">Add To Wish List</button>
+  <div class="d-flex justify-content-between">
+    <div>
+      <h3>
+        <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-geo-alt" viewBox="0 0 16 16">
+          <path d="M12.166 8.94c-.524 1.062-1.234 2.12-1.96 3.07A31.493 31.493 0 0 1 8 14.58a31.481 31.481 0 0 1-2.206-2.57c-.726-.95-1.436-2.008-1.96-3.07C3.304 7.867 3 6.862 3 6a5 5 0 0 1 10 0c0 .862-.305 1.867-.834 2.94zM8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10z" />
+          <path d="M8 8a2 2 0 1 1 0-4 2 2 0 0 1 0 4zm0 1a3 3 0 1 0 0-6 3 3 0 0 0 0 6z" />
+        </svg>
+        <a target="_blank" rel="noopener noreferrer" href="{{ T.url }}" class="ml-4 text-dark text-muted">{{ T.name }}</a>
+      </h3>
+      <h5 *ngIf="T.price != null">Price: {{ T.price }}</h5>
+      <h5>Rating: {{ T.rating }}/5</h5>
+      <button
+              title="Add to passport"
+              class="btn btn-dark"
+              *ngIf="isAuthenticated | async"
+              (click)="getAllPages(T.id , T.name)">
+        Add To Passport
+      </button>
+      <br />
+      <br />
+      <button
+              title="Add to wishlist"
+              class="btn btn-dark"
+              *ngIf="isAuthenticated | async"
+              (click)="buildWishList(T.id, T.name)">Add To Wish List</button>
+    </div>
+    <img src="{{ T.image_url }}" height="150" width="200" alt="yummy food image" />
+  </div>
   <br />
+  <hr />
   <br />
 </div>
 

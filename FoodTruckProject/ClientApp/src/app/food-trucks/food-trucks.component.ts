@@ -32,8 +32,6 @@ export class FoodTrucksComponent {
   getLat: number = 0;
   getLong: number = 0;
   city: string = "";
-  //lat: number = 42.331429;
-  //long: number = -83.045753;
   public isAuthenticated: Observable<boolean>;
   public Passport: passportPage[] = [];
   isInPassport: boolean = false;
@@ -146,7 +144,6 @@ export class FoodTrucksComponent {
 
     console.log(this.cityTrucks.length)
     this.cityTrucks.forEach(T => {
-      console.log('entering loop')
       var marker = new window['google'].maps.Marker({
         position: { lat: T.coordinates.latitude, lng: T.coordinates.longitude },
         map: map,
@@ -155,17 +152,14 @@ export class FoodTrucksComponent {
         animation: window['google'].maps.Animation.DROP,
       });
 
-      let addressString: string = '';
-      T.location.display_address.forEach(s => {
-        addressString + s;
-      })
 
       var contentString = '<div id="content">' +
         '<div id="siteNotice">' +
         '</div>' +
         `<h3 id="thirdHeading" class="thirdHeading">${T.name}</h3>` +
         '<div id="bodyContent">' +
-        `<p>${addressString}</p>` +
+        `<p>${T.location.address1}</p>` +
+        `<p>${T.location.city}, ${T.location.state} ${T.location.zip_code}</p>` +
         `<a target="_blank" rel="noopener noreferrer" href=${T.url}>Link to Yelp!</a>` +
         '</div>' +
         '</div>';

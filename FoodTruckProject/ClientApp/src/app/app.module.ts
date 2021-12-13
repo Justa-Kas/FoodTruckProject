@@ -7,14 +7,10 @@ import { RouterModule } from '@angular/router';
 import { AppComponent } from './app.component';
 import { NavMenuComponent } from './nav-menu/nav-menu.component';
 import { HomeComponent } from './home/home.component';
-import { CounterComponent } from './counter/counter.component';
-import { FetchDataComponent } from './fetch-data/fetch-data.component';
 import { ApiAuthorizationModule } from 'src/api-authorization/api-authorization.module';
 import { AuthorizeGuard } from 'src/api-authorization/authorize.guard';
 import { AuthorizeInterceptor } from 'src/api-authorization/authorize.interceptor';
 import { FoodTrucksComponent } from './food-trucks/food-trucks.component';
-/*import { AgmCoreModule } from '@agm/core';*/
-import { Secret } from './Secret';
 import { PassportPageComponent } from './passport-page/passport-page.component';
 import { NewPageComponent } from './new-page/new-page.component';
 import { WishListComponent } from './wish-list/wish-list.component';
@@ -26,8 +22,6 @@ import { ProfileComponent } from './profile/profile.component';
     AppComponent,
     NavMenuComponent,
     HomeComponent,
-    CounterComponent,
-    FetchDataComponent,
     FoodTrucksComponent,
     NewPageComponent,
     PassportPageComponent,
@@ -41,8 +35,6 @@ import { ProfileComponent } from './profile/profile.component';
     ApiAuthorizationModule,
     RouterModule.forRoot([
       { path: '', component: HomeComponent, pathMatch: 'full' },
-      { path: 'counter', component: CounterComponent },
-      { path: 'fetch-data', component: FetchDataComponent, canActivate: [AuthorizeGuard] },
       { path: 'food-trucks', component: FoodTrucksComponent },
       { path: 'passport', component: PassportPageComponent, canActivate: [AuthorizeGuard] },
       { path: 'add-page/:bid/:bname', component: NewPageComponent },
