@@ -59,11 +59,12 @@
         <h3>Welcome {{ currentProfile.name }}!</h3>
         <!--<h3>Allergies: {{ currentProfile.allergies }}</h3>-->
         <div *ngFor="let A of allAllergies">
-        <h5>{{ A }}</h5>
-      </div>
+          <h5>{{ A }}</h5>
+        </div>
         <h5>Dietary Restrictions: {{ currentProfile.diet }}</h5>
         <h5>Foodie Rating: {{ currentProfile.foodieRating }}</h5>
         <h5>Favorite Food: {{ currentProfile.faveFood }}</h5>
+        <button class="btn btn-primary mt-5" [routerLink]='["/authentication/profile"]'>Go To User Authentication Profile</button>
       </div>
       <div>
         <button title="Edit profile"

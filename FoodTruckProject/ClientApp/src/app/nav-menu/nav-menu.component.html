@@ -3,7 +3,12 @@
     class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3"
   >
     <div class="container">
-      <a class="navbar-brand" [routerLink]="['/']">FoodTruckProject</a>
+      <a class="navbar-brand" [routerLink]="['/']">
+        <h2>
+          <img src="../../assets/images/HomePageTruck.gif" height="50" width="100" />
+          Food Truckin'
+        </h2>
+      </a>
       <button
         class="navbar-toggler"
         type="button"
@@ -24,20 +29,28 @@
           <li class="nav-item"
               [routerLinkActive]="['link-active']"
               [routerLinkActiveOptions]="{ exact: true }">
-            <a class="nav-link text-dark" [routerLink]="['/']">Home</a>
+            <a class="nav-link text-dark" [routerLink]="['/']"><h5>Home</h5></a>
           </li>
           <li class="nav-item" [routerLinkActive]="['link-active']">
-            <a class="nav-link text-dark" [routerLink]="['/food-trucks']">Search Trucks</a>
+            <a class="nav-link text-dark" [routerLink]="['/food-trucks']"><h5>Search Trucks</h5></a>
           </li>
           <li class="nav-item" [routerLinkActive]="['link-active']">
-            <a class="nav-link text-dark" [routerLink]="['/passport']">Passport</a>
+            <a class="nav-link text-dark" [routerLink]="['/passport']"><h5>My Passport</h5></a>
           </li>
           <li class="nav-item" [routerLinkActive]="['link-active']">
-            <a class="nav-link text-dark" [routerLink]="['/wish-list']">Wish List</a>
+            <a class="nav-link text-dark" [routerLink]="['/wish-list']"><h5>My Wish List</h5></a>
           </li>
           <li class="nav-item" [routerLinkActive]="['link-active']">
-            <a class="nav-link text-dark" [routerLink]="['/user-profile']">My Profile</a>
+            <a class="nav-link text-dark" [routerLink]="['/user-profile']"><h5>My Profile</h5></a>
           </li>
+          <!--<li ngbDropdownMenu class="nav-item d-inline-block">
+            <button class="btn text-dark" id="dropdownProfile" ngbDropdownToggle><h5>My Profile</h5></button>
+            <div ngbDropdownMenu aria-labelledby="dropdownProfile">
+              <a ngbDropdownItem [routerLink]="['/user-profile']">Foodie Profile</a>
+              <a ngbDropdownItem [routerLink]='["/authentication/profile"]'>Authentication Menu</a>
+              <a ngbDropdownItem [routerLink]='["/authentication/logout"]'>Logout</a>
+            </div>
+          </li>-->
         </ul>
       </div>
     </div>

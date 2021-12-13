@@ -1,4 +1,8 @@
-/* You can add global styles to this file, and also import other style files */
+/*You can add global styles to this file, and also import other style files*/
+
+html, body {
+  font-family: 'Abel', sans-serif;
+}
 
 /* Provide sufficient contrast against white background */
 a {

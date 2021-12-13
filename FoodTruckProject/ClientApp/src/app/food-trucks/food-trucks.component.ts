@@ -43,8 +43,10 @@ export class FoodTrucksComponent {
   ngOnInit(): void {
     this.loadDefaultMap();
     this.isAuthenticated = this.authorizeservice.isAuthenticated();
-    this.isInPassport = false;
     this.isInWishList = false;
+    this.passportService.getAllPages().subscribe((response: any) => {
+      this.Passport = response;
+    });
   }
 
   getAllTrucks(lati:number, longi : number): void {
@@ -92,6 +94,10 @@ export class FoodTrucksComponent {
       }
       this.isInPassport = false;
     })
+  }
+
+  checkInPassport(bId: string): boolean {
+    return (this.Passport.filter(P => P.businessId == bId).length > 0);
   }
 
   buildWishList(bId: string, name: string): void {
