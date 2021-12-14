@@ -23,6 +23,7 @@ export class PassportPageComponent {
   Truck: FoodTruck = {} as FoodTruck;
   onePage: passportPage = {} as passportPage;
   pageCounter: number = 0;
+  ratingArray: number[] = [];
 
 
   ngOnInit(): void {
@@ -65,16 +66,22 @@ export class PassportPageComponent {
     const app = document.getElementById('page');
     this.pageCounter++;
     if (this.pageCounter == 0) {
-      app.innerHTML = '<h2>Welcome To Your Passport</h2>' + '<div class="mt-5">' +
+      app.innerHTML = '<h2>Welcome To Your Passport!</h2>' + '<div class="mt-5">' +
         '<img src = "../../assets/images/PassportTruck.png" height = "350" width = "350" />' +
         '</div>';
     }
     else{
-    this.onePage = this.Passport[i];
-    console.log(this.Passport[i]);
-      let passInfo: string =  `<h4> ${this.onePage.businessName}</h4>` + '<hr color=white />' + `<h5>Date Visited: ${this.displayDate()}</h5>` + `<h5>Food Eaten: ${this.onePage.foodEaten}</h5>` +
-        `<h5>Experience: ${this.onePage.experience}</h5>` + `<h5>Rating: ${this.onePage.rating}/10</h5>` + '<img class="mb-4" src="../../assets/images/RedTruckStamp.png" height="120" width="230"/>';
-    app.innerHTML = passInfo;
+      this.onePage = this.Passport[i];
+      this.ratingArray = [];
+      for (let indexNum: number = 1; indexNum <= this.onePage.rating; indexNum++) {
+        this.ratingArray.push(indexNum);
+      }
+      console.log('rating array');
+      console.log(this.ratingArray);
+      console.log(this.Passport[i]);
+      let passInfo: string = `<h4> ${this.onePage.businessName}</h4>` + `<div class="card text-dark"><img src=${this.onePage.picture} height="200" alt="Edit to add picture" /></div>` + '<hr color=white />' + `<h5>Date Visited: ${this.displayDate()}</h5>` + `<h5>Food Eaten: ${this.onePage.foodEaten}</h5>` +
+        `<h5>Experience: ${this.onePage.experience}</h5>` + `<div *ngFor="let truckImg of ratingArray">${this.ratingArray.length}<img src="../../assets/images/favicon-16x16.png" /></div>` + '<img class="mb-4" src="../../assets/images/RedTruckStamp.png" height="130" width="230"/>';
+        app.innerHTML = passInfo;
     }
   }
 
@@ -82,15 +89,21 @@ export class PassportPageComponent {
     const app = document.getElementById('page');
     this.pageCounter--;
     if (this.pageCounter == 0) {
-      app.innerHTML = '<h2>Welcome To Your Passport</h2>' + '<div class="mt-5">' +
+      app.innerHTML = '<h2>Welcome To Your Passport!</h2>' + '<div class="mt-5">' +
         '<img src = "../../assets/images/PassportTruck.png" height = "350" width = "350" />' +
         '</div>';
     }
     else {
     this.onePage = this.Passport[i-1];
-    console.log(this.Passport[i-1]);
-      let passInfo: string =  `<h4> ${this.onePage.businessName}</h4>` + '<hr color=white />' + `<h5>Date Visited: ${this.displayDate()}</h5>`  + `<h5>Food Eaten: ${this.onePage.foodEaten}</h5>` +
-        `<h5>Experience: ${this.onePage.experience}</h5>` + `<h5>Rating: ${this.onePage.rating}/10</h5>` + '<img class="mb-4" src="../../assets/images/RedTruckStamp.png" height="120" width="230"/>';
+      console.log(this.Passport[i - 1]);
+      this.ratingArray = [];
+      for (let indexNum: number = 1; indexNum <= this.onePage.rating; indexNum++) {
+        this.ratingArray.push(indexNum);
+      }
+      console.log('rating array');
+      console.log(this.ratingArray);
+      let passInfo: string = `<h4> ${this.onePage.businessName}</h4>` + `<div class="card text-dark"><img src=${this.onePage.picture} height="200" alt="Edit to add picture" /></div>` + '<hr color=white />' + `<h5>Date Visited: ${this.displayDate()}</h5>`  + `<h5>Food Eaten: ${this.onePage.foodEaten}</h5>` +
+        `<h5>Experience: ${this.onePage.experience}</h5>` + `<div *ngFor="let truckImg of ratingArray">${this.ratingArray.length}<img src="../../assets/images/favicon-16x16.png" /></div>` + '<img class="mb-4" src="../../assets/images/RedTruckStamp.png" height="130" width="230"/>';
     app.innerHTML = passInfo;
     }
   }
@@ -106,16 +119,13 @@ export class PassportPageComponent {
       rating: form.form.value.rating,
       foodEaten: form.form.value.foodEaten,
       experience: form.form.value.experience,
-      dateVisited: form.form.value.dateVisited
+      dateVisited: form.form.value.dateVisited,
+      picture: form.form.value.foodPic
     }
-    console.log("Rating:");
-    console.log(newPage.rating);
-    this.passportService.updatePassportPage(this.onePage.businessId, this.onePage.businessName, newPage.rating, newPage.foodEaten, newPage.experience, newPage.dateVisited).subscribe((response: any) => {
+    this.passportService.updatePassportPage(this.onePage.businessId, this.onePage.businessName, newPage.rating, newPage.foodEaten, newPage.experience, newPage.dateVisited, newPage.picture).subscribe((response: any) => {
       this.onePage = response;
       console.log(this.onePage);
-      //this.Passport.push(this.onePage);
       this.updatedPage = false;
-      //this.forwardPage(this.pageCounter--);
     })
   }
 

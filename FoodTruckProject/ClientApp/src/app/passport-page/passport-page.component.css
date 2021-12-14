@@ -1,1 +1,41 @@
-﻿
+.slider {
+  -webkit-appearance: none;
+  width: 100%;
+  height: 25px;
+  border-radius: 5px;
+  background: linear-gradient(to right, red, yellow, green);
+  outline: none;
+  -webkit-transition: .2s;
+  transition: opacity .2s;
+}
+
+  .slider:hover {
+    opacity: 1;
+  }
+
+  .slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 80px;
+    height: 60px;
+    border: hidden;
+    background: url('../../assets/images/TruckSliderBig.png');
+    cursor: pointer;
+  }
+
+textarea {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+label {
+  font-weight: bold;
+}
+
+h4 {
+  font-weight: bold;
+}
+
+p {
+  font-weight: bold;
+}

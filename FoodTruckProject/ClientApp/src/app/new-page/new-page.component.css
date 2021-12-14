@@ -1,6 +1,6 @@
 .slider {
   -webkit-appearance: none;
-  width: 96%;
+  width: 100%;
   height: 25px;
   border-radius: 5px;
   background: linear-gradient(to right, red, yellow, green);
@@ -21,3 +21,19 @@
     cursor: pointer;
   }
 
+  textarea {
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
+  }
+
+  label {
+      font-weight: bold;
+  }
+
+  h4 {
+      font-weight: bold;
+  }
+  p {
+    font-weight: bold;
+  }

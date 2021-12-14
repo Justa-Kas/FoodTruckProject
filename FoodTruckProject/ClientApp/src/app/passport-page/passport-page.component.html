@@ -7,16 +7,8 @@
       <path d="M8 0a8 8 0 1 0 0 16A8 8 0 0 0 8 0zm3.5 7.5a.5.5 0 0 1 0 1H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5H11.5z" />
     </svg>
   </button>
-  <div class="shadow-lg border border-dark pr-0 pt-4 mb-5 bg-dark text-white rounded ml-1 mt-4 d-flex justify-content-between" style="width:450px; height:550px">
-    <div id="page" class="mx-auto text-center">
-      <div *ngIf="!updatedPage">
-        <h2 class="">Welcome To Your Passport!</h2>
-        <div class="mt-5">
-          <img src="../../assets/images/PassportTruck.png" height="350" width="350" />
-        </div>
-      </div>
-    </div>
-    <div>
+  <div class="shadow-lg card border border-dark pr-0 pt-0 mb-5 bg-dark text-white rounded ml-1 mt-4" style="width:450px; height:700px">
+    <div class="d-flex justify-content-end">
       <button title="Edit Page"
               class="btn btn-link btn-floating btn-lg m-1 text-white text-decoration-none"
               *ngIf="pageCounter > 0 && !updatedPage"
@@ -27,6 +19,15 @@
         </svg>
       </button>
     </div>
+    <div id="page" class="mx-auto text-center mt-4">
+      <div *ngIf="!updatedPage">
+        <h2 class="">Welcome To Your Passport!</h2>
+        <div class="mt-5">
+          <img src="../../assets/images/PassportTruck.png" height="350" width="350" />
+        </div>
+      </div>
+    </div>
+
   </div>
 
   <button title="Next Page"
@@ -40,7 +41,7 @@
 
 
   <div class="shadow-lg mb-5 bg-white rounded ml-1 mt-4 d-flex justify-content-between ">
-    <div class="pt-0 px-3" *ngIf="updatedPage == true">
+    <div class="card pt-0 px-3" *ngIf="updatedPage == true" >
       <div class="d-flex justify-content-between">
         <h4 class=" pt-4 mx-auto pl-5">Update Page</h4>
         <button
@@ -55,16 +56,35 @@
       </div>
       <div>
         <form #editPage="ngForm" (ngSubmit)="editPassportPage(editPage)">
-          <label for="dateVisited">Date Visited:</label>
-          <input class="ml-3 my-2" name="dateVisited" type="date" [ngModel]="displayDate()" /><br />
-          <p class="my-2">What Did You Eat?</p>
-          <textarea rows="5" cols="55" name="foodEaten" type="text" [ngModel]="onePage.foodEaten"></textarea><br />
-          <p class="my-2">How Was The Experience?</p>
-          <textarea rows="5" cols="55" name="experience" type="text" [ngModel]="onePage.experience"></textarea><br />
-          <label for="rating">Please Enter A Rating (1-10):</label>
-          <input class="slider" id="ratingRange" name="rating" type="range" min="1" max="10" [ngModel]="onePage.rating" /><br />
+          <div class="text-center">
+            <h4>*Date visited:</h4>
+            <input class="ml-3 my-2" name="dateVisited" type="date" [ngModel]="displayDate()" /><br />
+          </div>
+          <div class="mt-3 text-center">
+            <h4>Image URL: </h4>
+            <input size="45" class="ml-3" name="foodPic" type="text" placeholder="Image URL ending with .png or .jpeg" [ngModel]="onePage.picture" /><br />
+            <a class="my-2" target="_blank" rel="noopener noreferrer" href="https://imgur.com/upload">
+              Follow link to convert image to URL <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-up-right-square" viewBox="0 0 16 16">
+                <path fill-rule="evenodd" d="M15 2a1 1 0 0 0-1-1H2a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V2zM0 2a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V2zm5.854 8.803a.5.5 0 1 1-.708-.707L9.243 6H6.475a.5.5 0 1 1 0-1h3.975a.5.5 0 0 1 .5.5v3.975a.5.5 0 1 1-1 0V6.707l-4.096 4.096z" />
+              </svg>
+            </a>
+            <p class="bg-warning">Instructions: Upload picture through the link. When image is loaded, right click on image and select "Copy image address" then paste it into the textbox above.</p>
+          </div>
+          <h4 class="mt-3 text-center">What did you eat?</h4>
+          <textarea rows="2" cols="65" name="foodEaten" type="text" [ngModel]="onePage.foodEaten" required></textarea><br />
+          <h4 class="my-2 text-center">How was the experience?</h4>
+          <textarea rows="3" cols="65" name="experience" type="text" [ngModel]="onePage.experience"></textarea><br />
+          <h4 class="text-center">How tasty was it?</h4>
+          <div>
+            <div class="d-flex justify-content-between p-3 text-center">
+              <h4>Yuck!</h4>
+              <h4>Meh..</h4>
+              <h4>Woo!</h4>
+            </div>
+            <input class="slider mb-3" name="rating" type="range" min="1" max="10" [ngModel]="onePage.rating" /><br />
+          </div>
           <div class="mx-auto mt-4">
-            <button class="btn btn-dark btn-block" value="Refresh" onClick="window.location.reload(true)">Update Passport Entry</button>
+            <button class="btn btn-dark btn-block mb-3" value="Refresh" onClick="window.location.reload(true)">Update Passport Entry</button>
           </div>
         </form>
       </div>

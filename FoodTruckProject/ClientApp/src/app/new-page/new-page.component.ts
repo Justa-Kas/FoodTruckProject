@@ -33,11 +33,11 @@ export class NewPageComponent {
       rating: form.form.value.rating,
       foodEaten: form.form.value.foodEaten,
       experience: form.form.value.experience,
-      dateVisited: form.form.value.dateVisited
+      dateVisited: form.form.value.dateVisited,
+      picture: form.form.value.foodPic
     }
-    this.passportService.addPassportPage(newPage.businessId, newPage.businessName, newPage.rating, newPage.foodEaten, newPage.experience, newPage.dateVisited).subscribe((response: any) => {
-      //this.newPage = response;
-
+    this.passportService.addPassportPage(newPage.businessId, newPage.businessName, newPage.rating, newPage.foodEaten, newPage.experience, newPage.dateVisited, newPage.picture).subscribe((response: any) => {
+      this.ratingArray = new Array(newPage.rating);
     })
     
     this.routing.navigate(['/passport']).then(() => {
