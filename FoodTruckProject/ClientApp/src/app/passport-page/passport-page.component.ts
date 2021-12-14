@@ -65,13 +65,15 @@ export class PassportPageComponent {
     const app = document.getElementById('page');
     this.pageCounter++;
     if (this.pageCounter == 0) {
-      app.innerHTML = '<h4>Welcome To Your Passport</h4>';
+      app.innerHTML = '<h2>Welcome To Your Passport</h2>' + '<div class="mt-5">' +
+        '<img src = "../../assets/images/PassportTruck.png" height = "350" width = "350" />' +
+        '</div>';
     }
     else{
     this.onePage = this.Passport[i];
     console.log(this.Passport[i]);
-      let passInfo: string = `<h4> ${this.onePage.businessName}</h4>` + `<h5>Date Visited: ${this.displayDate()}</h5>` + `<h5>Food Eaten: ${this.onePage.foodEaten}</h5>` +
-        `<h5>Experience: ${this.onePage.experience}</h5>` + `<h5>Rating: ${this.onePage.rating}/10</h5>`;
+      let passInfo: string =  `<h4> ${this.onePage.businessName}</h4>` + '<hr color=white />' + `<h5>Date Visited: ${this.displayDate()}</h5>` + `<h5>Food Eaten: ${this.onePage.foodEaten}</h5>` +
+        `<h5>Experience: ${this.onePage.experience}</h5>` + `<h5>Rating: ${this.onePage.rating}/10</h5>` + '<img class="mb-4" src="../../assets/images/RedTruckStamp.png" height="120" width="230"/>';
     app.innerHTML = passInfo;
     }
   }
@@ -80,13 +82,15 @@ export class PassportPageComponent {
     const app = document.getElementById('page');
     this.pageCounter--;
     if (this.pageCounter == 0) {
-      app.innerHTML = '<h4>Welcome To Your Passport</h4>';
+      app.innerHTML = '<h2>Welcome To Your Passport</h2>' + '<div class="mt-5">' +
+        '<img src = "../../assets/images/PassportTruck.png" height = "350" width = "350" />' +
+        '</div>';
     }
     else {
     this.onePage = this.Passport[i-1];
     console.log(this.Passport[i-1]);
-      let passInfo: string = `<h4> ${this.onePage.businessName}</h4>` + `<h5>Date Visited: ${this.displayDate()}</h5>`  + `<h5>Food Eaten: ${this.onePage.foodEaten}</h5>` +
-        `<h5>Experience: ${this.onePage.experience}</h5>` + `<h5>Rating: ${this.onePage.rating}/10</h5>`;
+      let passInfo: string =  `<h4> ${this.onePage.businessName}</h4>` + '<hr color=white />' + `<h5>Date Visited: ${this.displayDate()}</h5>`  + `<h5>Food Eaten: ${this.onePage.foodEaten}</h5>` +
+        `<h5>Experience: ${this.onePage.experience}</h5>` + `<h5>Rating: ${this.onePage.rating}/10</h5>` + '<img class="mb-4" src="../../assets/images/RedTruckStamp.png" height="120" width="230"/>';
     app.innerHTML = passInfo;
     }
   }

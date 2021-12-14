@@ -6,8 +6,8 @@
       <div class="mt-5 pl-5 text-left">
         <h3>Create your profile: </h3>
         <form #newProfile="ngForm" (ngSubmit)="createNewProfile(newProfile)">
-          <label for="name">Preferred name: </label>
-          <input class="ml-3 my-2" type="text" name="name" [ngModel]="currentProfile.name" />
+          <label for="name">*Preferred name: </label>
+          <input class="ml-3 my-2" type="text" required name="name" [ngModel]="currentProfile.name" />
           <br />
           <label for="allergies">List any allergies: </label>
           <!--<input type="text" name="allergies" [ngModel]="currentProfile.allergies" />
@@ -39,9 +39,9 @@
           <label for="diet">Any dietary preferances? </label>
           <input class="ml-3 my-2" type="text" name="diet" [ngModel]="currentProfile.diet" />
           <br />
-          <label for="foodierating">How much of a Foodie are you? </label>
-          <input type="number" name="foodierating" [ngModel]="currentProfile.foodieRating" />
-          <br />
+          <!--<label for="foodierating">How much of a Foodie are you? </label>
+          <input type="number" name="foodierating" [ngModel]="currentProfile.foodieRating" />-->
+          <!--<br />-->
           <label for="favfood">What would you eat every day if you could? </label>
           <input class="ml-3 my-2" type="text" name="favfood" [ngModel]="currentProfile.faveFood" />
           <br />
@@ -54,27 +54,50 @@
     </div>
 
     <!-------------------------------display user profile--------------------------------------->
-    <div class="d-flex justify-content-between" *ngIf="profileExists && !displayEdit" id="profile-display">
-      <div class="mt-5 pl-5 text-left">
-        <h3>Welcome {{ currentProfile.name }}!</h3>
-        <!--<h3>Allergies: {{ currentProfile.allergies }}</h3>-->
-        <div *ngFor="let A of allAllergies">
-          <h5>{{ A }}</h5>
+    <div *ngIf="profileExists && !displayEdit" id="profile-display" class="p-5">
+      <div class=" d-flex justify-content-between">
+        <h1>Welcome {{ currentProfile.name }}!</h1>
+        <div >
+          <button title="Edit profile"
+                  class="btn btn-link btn-floating btn-lg m-1 text-dark btn-block"
+                  (click)="resetForm()">
+            <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
+              <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z" />
+              <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z" />
+            </svg>
+          </button>
         </div>
-        <h5>Dietary Restrictions: {{ currentProfile.diet }}</h5>
-        <h5>Foodie Rating: {{ currentProfile.foodieRating }}</h5>
-        <h5>Favorite Food: {{ currentProfile.faveFood }}</h5>
-        <button class="btn btn-primary mt-5" [routerLink]='["/authentication/profile"]'>Go To User Authentication Profile</button>
       </div>
+      <hr />
       <div>
-        <button title="Edit profile"
-                class="btn btn-link btn-floating btn-lg m-1 text-dark btn-block"
-                (click)="resetForm()">
-          <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
-            <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z" />
-            <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z" />
-          </svg>
-        </button>
+        <div class="mt-5 pl-5 text-left">
+            <h4>Allergies:</h4>
+          <div *ngFor="let A of allAllergies">
+            <div class="row">
+              <div class="col-1"></div>
+              <h5 class="col-4">{{ A }}</h5>
+            </div>
+          </div>
+          <h4>Dietary Restrictions: {{ currentProfile.diet }}</h4>
+          <h4>Favorite Food: {{ currentProfile.faveFood }}</h4>
+          <h4>Earned Badges:</h4>
+
+          <img *ngIf="currentProfile.foodieRating >= 1" src="../../assets/images/LoyalRoyal.gif" height="75" width="130" />
+
+
+          <img *ngIf="currentProfile.foodieRating >= 5" src="../../assets/images/BasicBronze.gif" height="75" width="130" />
+
+
+          <img *ngIf="currentProfile.foodieRating >= 10" src="../../assets/images/StandardSilver.gif" height="75" width="130" />
+
+          <img *ngIf="currentProfile.foodieRating >= 15" src="../../assets/images/GrandGold.gif" height="75" width="130" />
+
+          <img *ngIf="currentProfile.foodieRating >= 20" src="../../assets/images/DiamondDeluxe.gif" height="75" width="130" />
+          <br />
+          <button class="btn btn-primary mt-5" [routerLink]='["/authentication/profile"]'>Go To User Authentication Profile</button>
+
+        </div>
+
       </div>
     </div>
 
@@ -115,9 +138,9 @@
           <label for="diet">Any dietary preferances? </label>
           <input class="ml-3 my-2" type="text" name="diet" [ngModel]="currentProfile.diet" />
           <br />
-          <label for="foodierating">How much of a Foodie are you? </label>
+          <!--<label for="foodierating">How much of a Foodie are you? </label>
           <input type="number" name="foodierating" [ngModel]="currentProfile.foodieRating" />
-          <br />
+          <br />-->
           <label for="favfood">What would you eat every day if you could? </label>
           <input class="ml-3 my-2" type="text" name="favfood" [ngModel]="currentProfile.faveFood" />
           <br />

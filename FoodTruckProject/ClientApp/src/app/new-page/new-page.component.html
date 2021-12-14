@@ -4,14 +4,23 @@
   </div>
   <br />
   <form #addPage="ngForm" (ngSubmit)="addPassportPage(addPage)">
-    <label for="dateVisited">Date Visited:</label>
-    <input class="ml-3 my-2" name="dateVisited" type="date" ngModel required /><br />
-    <p class="my-2">What Did You Eat?</p>
-    <textarea rows="5" cols="60" name="foodEaten" type="text" ngModel required></textarea><br />
-    <p class="my-2">How Was The Experience?</p>
-    <textarea rows="5" cols="60" name="experience" type="text" ngModel></textarea><br />
-    <label for="rating">How Much Did You Like It?</label>
-    <input class="ml-3 my-2" name="rating" type="range" min="1" max="10" ngModel /><br />
+    <div class="text-center">
+      <label for="dateVisited">Date visited:</label>
+      <input class="ml-3 my-2" name="dateVisited" type="date" ngModel required /><br />
+    </div>
+    <p class="my-2 text-center">What did you eat?</p>
+    <textarea rows="2" cols="65" name="foodEaten" type="text" ngModel required></textarea><br />
+    <p class="my-2 text-center">How was the experience?</p>
+    <textarea rows="3" cols="65" name="experience" type="text" ngModel></textarea><br />
+    <p class="text-center">How tasty was it?</p>
+    <div>
+      <div class="d-flex justify-content-between p-3 text-center">
+        <p>Yuck!</p>
+        <p>Meh..</p>
+        <p>Woo!</p>
+      </div>
+      <input class="slider mb-3 ml-2 mr-2" name="rating" type="range" min="1" max="10" ngModel /><br />
+    </div>
     <div class="d-flex justify-content-center">
       <button class="btn btn-dark mt-4 btn-block">Log Passport Entry</button>
     </div>

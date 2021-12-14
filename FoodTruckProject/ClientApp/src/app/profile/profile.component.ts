@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthorizeService } from '../../api-authorization/authorize.service';
+import { PassportService } from '../passport.service';
+import { passportPage } from '../passportPage';
 import { Profile } from '../Profile';
 import { UserProfileService } from '../user-profile.service';
 
@@ -13,10 +15,11 @@ import { UserProfileService } from '../user-profile.service';
 /** Profile component*/
 export class ProfileComponent {
     /** Profile ctor */
-  constructor(private profileservice: UserProfileService, private authorizeservice: AuthorizeService, private routing: Router) {
+  constructor(private profileservice: UserProfileService, private authorizeservice: AuthorizeService, private routing: Router, private passportservice: PassportService) {
 
   }
 
+  userPassport: passportPage[] = [];
   currentProfile: Profile = {} as Profile;
   public userID: string = '';
   public profileExists: boolean = true;
@@ -30,6 +33,9 @@ export class ProfileComponent {
     this.checkUserID();
     this.Allergies = '';
     console.log(this.allAllergies);
+    this.passportservice.getAllPages().subscribe((response: any) => {
+      this.userPassport = response;
+    });
   }
 
   checkUserID(): void {
@@ -69,28 +75,29 @@ export class ProfileComponent {
     }
 
     let Name: string = form.form.value.name;
-    /*    let Allergies: string = form.form.value.allergies;*/
     this.otherAllergy = form.form.value.otherAllergies;
     this.Allergies += this.otherAllergy;
     let Diet: string = form.form.value.diet;
-    let FoodieRating: number = form.form.value.foodierating;
+/*    let FoodieRating: number = form.form.value.foodierating;*/
     let FavFood: string = form.form.value.favfood;
 
-    if (Name == "") {
-      Name = this.currentProfile.name;
-    }
+    //if (Name == "") {
+    //  Name = this.currentProfile.name;
+    //}
     if (this.Allergies == "") {
       this.Allergies = this.currentProfile.allergies;
     }
-    if (Diet == "") {
-      Diet = this.currentProfile.diet;
-    }
-    if (!FoodieRating) {
-      FoodieRating = this.currentProfile.foodieRating;
-    }
-    if (FavFood == "") {
-      FavFood = this.currentProfile.faveFood;
-    }
+    //if (Diet == "") {
+    //  Diet = this.currentProfile.diet;
+    //}
+    //if (!FoodieRating) {
+    //  FoodieRating = this.currentProfile.foodieRating;
+    //}
+    //if (FavFood == "") {
+    //  FavFood = this.currentProfile.faveFood;
+    //}
+    let FoodieRating: number = this.userPassport.length;
+    
 
 
 
@@ -148,25 +155,25 @@ export class ProfileComponent {
     this.otherAllergy = form.form.value.otherAllergies;
     this.Allergies += this.otherAllergy;
     let Diet: string = form.form.value.diet;
-    let FoodieRating: number = form.form.value.foodierating;
+    let FoodieRating: number = this.userPassport.length;
     console.log(FoodieRating);
     let FavFood: string = form.form.value.favfood;
 
-    if (Name == "") {
-      Name = this.currentProfile.name;
-    }
+    //if (Name == "") {
+    //  Name = this.currentProfile.name;
+    //}
     if (this.Allergies == "") {
       this.Allergies = this.currentProfile.allergies;
     }
-    if (Diet == "") {
-      Diet = this.currentProfile.diet;
-    }
-    if (!FoodieRating) {
-      FoodieRating = this.currentProfile.foodieRating;
-    }
-    if (FavFood == "") {
-      FavFood = this.currentProfile.faveFood;
-    }
+    //if (Diet == "") {
+    //  Diet = this.currentProfile.diet;
+    //}
+    //if (!FoodieRating) {
+    //  FoodieRating = this.currentProfile.foodieRating;
+    //}
+    //if (FavFood == "") {
+    //  FavFood = this.currentProfile.faveFood;
+    //}
 
     this.profileservice.updateProfile(Name, this.Allergies, Diet, FoodieRating, FavFood).subscribe((response: any) => {
       console.log('update working');
