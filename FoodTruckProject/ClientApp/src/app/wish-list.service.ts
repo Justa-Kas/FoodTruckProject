@@ -20,7 +20,7 @@ export class WishListService {
     return this.httpservice.post(this.baseUrl + `api/WishList/addToWishList?businessId=${bid}&businessName=${bname}`, {})
   }
 
-  removeFromWishList(id: number): any {
+  removeFromWishList(id: string): any {
     return this.httpservice.delete(this.baseUrl + `api/WishList/deleteFromWishList/${id}`)
   }
 }

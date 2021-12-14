@@ -6,9 +6,9 @@
         <h5>{{ W.name }}</h5>
       </a>
       <p>{{ W.location.display_address[0] }}, {{ W.location.display_address[1] }}</p>
-</div>
+    </div>
     <div>
-      <button class="btn btn-danger m-3" (click)="deleteFromWishList(WishList[i].id)">Delete From Wish List</button>
+      <button class="btn btn-danger m-3" (click)="deleteFromWishList(W.id)">Delete From Wish List</button>
       <button class="btn btn-dark m-3" (click)="getAllPages( W.id, W.name)">Add To Passport</button>
     </div>
   </div>

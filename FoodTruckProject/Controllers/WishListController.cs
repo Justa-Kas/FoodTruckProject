@@ -51,11 +51,11 @@ namespace FoodTruckProject.Controllers
         }
 
         [HttpDelete("deleteFromWishList/{Id}")]
-        public WishList DeleteFromWishList(int Id)
+        public WishList DeleteFromWishList(string Id)
         {
             ClaimsPrincipal currentUser = this.User;
             string currentUserID = currentUser.FindFirst(ClaimTypes.NameIdentifier).Value;
-            WishList result = this.context.WishLists.ToList().Find(W => W.Id == Id && W.UserId == currentUserID);
+            WishList result = this.context.WishLists.ToList().Find(W => W.BusinessId == Id && W.UserId == currentUserID);
             this.context.WishLists.Remove(result);
             this.context.SaveChanges();
 

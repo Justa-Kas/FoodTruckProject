@@ -31,14 +31,14 @@ export class WishListComponent {
     this.isInPassport = false;
 }
 
-  deleteFromWishList(id: number): void {
+  deleteFromWishList(id: string): void {
     this.wishlistservice.removeFromWishList(id).subscribe((response: any) => {
       console.log(response);
-      for (let i = 0; i < this.WishList.length; i++) {
-        this.indexNum = this.TruckItems.findIndex(w => (w.id == this.WishList[i].businessId));
-      }
+    //  for (let i = 0; i < this.WishList.length; i++) {
+        this.indexNum = this.TruckItems.findIndex(w => (w.id == id));
+     // }
       this.TruckItems.splice(this.indexNum, 1);
-
+      console.log(this.TruckItems);
     });
   }
 
