@@ -37,7 +37,7 @@ export class NewPageComponent {
       picture: form.form.value.foodPic
     }
     this.passportService.addPassportPage(newPage.businessId, newPage.businessName, newPage.rating, newPage.foodEaten, newPage.experience, newPage.dateVisited, newPage.picture).subscribe((response: any) => {
-      this.ratingArray = new Array(newPage.rating);
+     
     })
     
     this.routing.navigate(['/passport']).then(() => {
