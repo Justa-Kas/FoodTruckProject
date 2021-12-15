@@ -75,6 +75,16 @@ export class FoodTrucksComponent {
     this.getLat = 42.331429;
     this.getLong = -83.045753;
     this.geomapservice.initMap(this.mapElement, this.getLat, this.getLong);
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition((position) => {
+        this.getLong = position.coords.longitude;
+        this.getLat = position.coords.latitude;
+        this.geomapservice.initMap(this.mapElement, this.getLat, this.getLong);
+      });
+    }
+    else {
+      console.log("No support for geolocation")
+    }
   }
 
   getAllPages(bId: string, name: string): void {

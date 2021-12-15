@@ -1,7 +1,5 @@
 <header>
-  <nav
-    class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3"
-  >
+  <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
     <div class="container">
       <a class="navbar-brand" [routerLink]="['/']">
         <h2>
@@ -9,21 +7,17 @@
           Food Truckin'
         </h2>
       </a>
-      <button
-        class="navbar-toggler"
-        type="button"
-        data-toggle="collapse"
-        data-target=".navbar-collapse"
-        aria-label="Toggle navigation"
-        [attr.aria-expanded]="isExpanded"
-        (click)="toggle()"
-      >
+      <button class="navbar-toggler"
+              type="button"
+              data-toggle="collapse"
+              data-target=".navbar-collapse"
+              aria-label="Toggle navigation"
+              [attr.aria-expanded]="isExpanded"
+              (click)="toggle()">
         <span class="navbar-toggler-icon"></span>
       </button>
-      <div
-        class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse"
-        [ngClass]="{ show: isExpanded }"
-      >
+      <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse"
+           [ngClass]="{ show: isExpanded }">
         <app-login-menu></app-login-menu>
         <ul class="navbar-nav flex-grow">
           <li class="nav-item"
@@ -40,17 +34,40 @@
           <li class="nav-item" [routerLinkActive]="['link-active']">
             <a class="nav-link text-dark" [routerLink]="['/wish-list']"><h5 class="secondColor">My Wish List</h5></a>
           </li>
+
           <li class="nav-item" [routerLinkActive]="['link-active']">
-            <a class="nav-link text-dark" [routerLink]="['/user-profile']"><h5 class="firstColor">My Profile</h5></a>
+            <a class="nav-link text-dark" [routerLink]="['/user-profile']"><h5 class="secondColor">My Profile</h5></a>
           </li>
-          <!--<li ngbDropdownMenu class="nav-item d-inline-block">
-            <button class="btn text-dark" id="dropdownProfile" ngbDropdownToggle><h5>My Profile</h5></button>
-            <div ngbDropdownMenu aria-labelledby="dropdownProfile">
-              <a ngbDropdownItem [routerLink]="['/user-profile']">Foodie Profile</a>
-              <a ngbDropdownItem [routerLink]='["/authentication/profile"]'>Authentication Menu</a>
-              <a ngbDropdownItem [routerLink]='["/authentication/logout"]'>Logout</a>
-            </div>
-          </li>-->
+
+          <!--<li class="nav-item dropdown show" [routerLinkActive]="['link-active']">
+    <a class="nav-link text-dark dropdown-toggle" data-toggle="dropdown" [routerLink]="['/user-profile']" role="button" aria-haspopup="true" aria-expanded="false" aria-label="profileDrop"><h5 class="firstColor">My Profile</h5></a>
+    <div class="dropdown-menu" aria-labelledby="profileDrop">
+      <a class="dropdown-item" [routerLink]="['/user-profile']">Foodie Profile</a>
+      <a class="dropdown-item" [routerLink]='["/authentication/profile"]'>Authentication Menu</a>
+      <a class="dropdown-item" [routerLink]='["/authentication/logout"]'>Logout</a>
+    </div>
+  </li>
+
+  <li class="nav-item dropdown show" [routerLinkActive]="['link-active']">
+    <div class="dropdown">
+      <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        Dropdown button
+      </button>
+      <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+        <a class="dropdown-item" href="#">Action</a>
+        <a class="dropdown-item" href="#">Another action</a>
+        <a class="dropdown-item" href="#">Something else here</a>
+      </div>
+    </div>
+  </li>-->
+          <!--<li class="nav-item">
+    <a class="nav-link" id="dropdownProfile" role="button" ngbDropdownToggle><h5>My Profile</h5></a>
+    <div ngbDropdownMenu aria-labelledby="dropdownProfile">
+      <a ngbDropdownItem [routerLink]="['/user-profile']">Foodie Profile</a>
+      <a ngbDropdownItem [routerLink]='["/authentication/profile"]'>Authentication Menu</a>
+      <a ngbDropdownItem [routerLink]='["/authentication/logout"]'>Logout</a>
+    </div>
+  </li>-->
         </ul>
       </div>
     </div>

@@ -80,7 +80,7 @@
           </div>
           <h4>Dietary Restrictions: {{ currentProfile.diet }}</h4>
           <h4>Favorite Food: {{ currentProfile.faveFood }}</h4>
-          <h4>Earned Badges:</h4>
+          <h4>Earned Badges: You have {{ currentProfile.foodieRating }} trucks in your passport! </h4>
 
           <img *ngIf="currentProfile.foodieRating >= 1" src="../../assets/images/LoyalRoyal.gif" height="75" width="130" />
 
