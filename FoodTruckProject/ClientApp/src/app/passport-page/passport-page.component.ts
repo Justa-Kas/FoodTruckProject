@@ -66,9 +66,6 @@ export class PassportPageComponent {
     const app = document.getElementById('page');
     this.pageCounter++;
     if (this.pageCounter == 0) {
-      app.innerHTML = '<h2>Welcome To Your Passport!</h2>' + '<div class="mt-5">' +
-        '<img src = "../../assets/images/PassportTruck.png" height = "350" width = "350" />' +
-        '</div>';
       this.ratingArray = [];
     }
     else{
@@ -80,9 +77,6 @@ export class PassportPageComponent {
       console.log('rating array');
       console.log(this.ratingArray);
       console.log(this.Passport[i]);
-      let passInfo: string = `<h4> ${this.onePage.businessName}</h4>` + `<div class="card text-dark"><img src=${this.onePage.picture} height="200" alt="Edit to add picture" /></div>` + '<hr color=white />' + `<h5>Date Visited: ${this.displayDate()}</h5>` + `<h5>Food Eaten: ${this.onePage.foodEaten}</h5>` +
-        `<h5>Experience: ${this.onePage.experience}</h5>`;
-        app.innerHTML = passInfo;
     }
   }
 
@@ -90,9 +84,6 @@ export class PassportPageComponent {
     const app = document.getElementById('page');
     this.pageCounter--;
     if (this.pageCounter == 0) {
-      app.innerHTML = '<h2>Welcome To Your Passport!</h2>' + '<div class="mt-5">' +
-        '<img src = "../../assets/images/PassportTruck.png" height = "350" width = "350" />' +
-        '</div>';
       this.ratingArray = [];
     }
     else {
@@ -104,9 +95,6 @@ export class PassportPageComponent {
       }
       console.log('rating array');
       console.log(this.ratingArray);
-      let passInfo: string = `<h4> ${this.onePage.businessName}</h4>` + `<div class="card text-dark"><img src=${this.onePage.picture} height="200" alt="Edit to add picture" /></div>` + '<hr color=white />' + `<h5>Date Visited: ${this.displayDate()}</h5>`  + `<h5>Food Eaten: ${this.onePage.foodEaten}</h5>` +
-        `<h5>Experience: ${this.onePage.experience}</h5>`;
-    app.innerHTML = passInfo;
     }
   }
 

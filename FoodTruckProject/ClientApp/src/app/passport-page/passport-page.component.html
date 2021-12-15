@@ -7,7 +7,7 @@
       <path d="M8 0a8 8 0 1 0 0 16A8 8 0 0 0 8 0zm3.5 7.5a.5.5 0 0 1 0 1H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5H11.5z" />
     </svg>
   </button>
-  <div class="shadow-lg card border border-dark p-3 pt-0 mb-5 bg-dark text-white rounded ml-1 mt-4" style="width:450px; height:700px">
+  <div class="shadow-lg card border border-dark p-3 pt-0 mb-5 bg-dark text-white rounded ml-1 mt-4" style="width:550px; height:700px">
     <div class="d-flex justify-content-end">
       <button title="Edit Page"
               class="btn btn-link btn-floating btn-lg m-1 text-white text-decoration-none"
@@ -19,17 +19,34 @@
         </svg>
       </button>
     </div>
-    <div id="page" class="mx-auto text-center mt-4 text-wrap">
-      <div *ngIf="!updatedPage">
+    <div id="page" class="mx-auto text-center mt-4">
+      <div *ngIf="ratingArray.length == 0">
         <h2 class="">Welcome To Your Passport!</h2>
         <div class="mt-5">
           <img src="../../assets/images/PassportTruck.png" height="350" width="350" />
         </div>
       </div>
-    </div>
-    <div class="d-flex justify-content-center"><img *ngFor="let truckImg of ratingArray" src="../../assets/images/TruckSliderBig.png" height="60" /></div>
-    <div *ngIf="ratingArray.length > 0">
-      <img class="mb-4" src="../../assets/images/RedTruckStamp.png" height="130" width="230" />
+      <div *ngIf="ratingArray.length > 0">
+        <h4 class="mt-0">{{ onePage.businessName }}</h4>
+        <div class="card text-white bg-dark" style="height: 150px; width: 500px;">
+          <img src="{{onePage.picture}}" style="height:150px; width:500px; object-fit:contain; object-position:center" alt="Edit to add picture" />
+        </div>
+        <hr color="white" />
+        <h5 class="text-left">Date visited: {{ displayDate() }}</h5>
+        <div class="d-flex justify-content-left align-bottom">
+          <h5>Food eaten:</h5>
+          <p class="text-break ml-2"> {{ onePage.foodEaten }}</p>
+        </div>
+        <div class="d-flex justify-content-left">
+          <h5>Experience:</h5>
+          <p class="text-break ml-2"> {{ onePage.experience }}</p>
+        </div>
+        <div class="d-flex justify-content-left">
+          <h5 class="text-left">Rating: </h5>
+          <img class="ml-2" *ngFor="let truckImg of ratingArray" src="../../assets/images/RatingTruck.png" height="30" />
+        </div>
+        <img class="mt-4 mb-0" src="../../assets/images/RedTruckStamp.png" height="100" width="177" />
+      </div>
     </div>
   </div>
 
@@ -71,12 +88,12 @@
                 <path fill-rule="evenodd" d="M15 2a1 1 0 0 0-1-1H2a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V2zM0 2a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V2zm5.854 8.803a.5.5 0 1 1-.708-.707L9.243 6H6.475a.5.5 0 1 1 0-1h3.975a.5.5 0 0 1 .5.5v3.975a.5.5 0 1 1-1 0V6.707l-4.096 4.096z" />
               </svg>
             </a>
-            <p class="bg-warning">Instructions: Upload picture through the link. When image is loaded, right click on image and select "Copy image address" then paste it into the textbox above.</p>
+            <p class="bg-warning" style="font-weight:bold">Instructions: Upload picture through the link. When image is loaded, right click on image and select "Copy image address" then paste it into the textbox above.</p>
           </div>
           <h4 class="mt-3 text-center">What did you eat?</h4>
-          <textarea rows="2" cols="65" name="foodEaten" type="text" [ngModel]="onePage.foodEaten" required></textarea><br />
+          <textarea rows="2" cols="65" maxlength="89" name="foodEaten" type="text" [ngModel]="onePage.foodEaten" required></textarea><br />
           <h4 class="my-2 text-center">How was the experience?</h4>
-          <textarea rows="3" cols="65" name="experience" type="text" [ngModel]="onePage.experience"></textarea><br />
+          <textarea rows="3" cols="65" maxlength="117" name="experience" type="text" [ngModel]="onePage.experience"></textarea><br />
           <h4 class="text-center">How tasty was it?</h4>
           <div>
             <div class="d-flex justify-content-between p-3 text-center">
