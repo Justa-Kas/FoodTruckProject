@@ -2,6 +2,7 @@
 
 html, body {
   font-family: 'Abel', sans-serif;
+  background-color: #DAE0EB
 }
 
 /* Provide sufficient contrast against white background */
@@ -17,4 +18,14 @@ code {
   color: #fff;
   background-color: #1b6ec2;
   border-color: #1861ac;
+}
+
+.firstColor {
+  color: #FF0098;
+  font-weight: bold;
+}
+
+.secondColor {
+  color: #04c3e6;
+  font-weight: bold;
 }
