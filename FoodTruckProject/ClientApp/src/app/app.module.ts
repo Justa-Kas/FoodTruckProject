@@ -15,6 +15,7 @@ import { PassportPageComponent } from './passport-page/passport-page.component';
 import { NewPageComponent } from './new-page/new-page.component';
 import { WishListComponent } from './wish-list/wish-list.component';
 import { ProfileComponent } from './profile/profile.component';
+import { FooterComponent } from './footer/footer.component';
 
 
 @NgModule({
@@ -26,7 +27,8 @@ import { ProfileComponent } from './profile/profile.component';
     NewPageComponent,
     PassportPageComponent,
     WishListComponent,
-    ProfileComponent
+    ProfileComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),

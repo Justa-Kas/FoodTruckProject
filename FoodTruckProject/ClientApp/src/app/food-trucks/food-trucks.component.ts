@@ -63,6 +63,7 @@ export class FoodTrucksComponent {
         this.city = this.cityTrucks[0].location.city;
         console.log(this.cityTrucks);
         this.filteredTrucks = this.cityTrucks;
+/*        console.log(this.filteredTrucks[1].categories[1].title);*/
       }
 
       this.loadMap();

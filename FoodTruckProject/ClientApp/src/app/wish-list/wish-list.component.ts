@@ -60,7 +60,6 @@ export class WishListComponent {
       })
       if (this.isInPassport == false) {
         this.routing.navigate([`/add-page/${bId}/${name}`]);
-        alert("Added to Passport")
       }
       else {
         console.log("Already In Passport");

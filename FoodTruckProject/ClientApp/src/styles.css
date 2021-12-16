@@ -2,7 +2,7 @@
 
 html, body {
   font-family: 'Abel', sans-serif;
-  background-color: #DAE0EB
+  background-color: #e4e9f2
 }
 
 /* Provide sufficient contrast against white background */
@@ -21,11 +21,11 @@ code {
 }
 
 .firstColor {
-  color: #FF0098;
+  color: #6f7887;
   font-weight: bold;
 }
 
 .secondColor {
-  color: #04c3e6;
+  color: #6f7887;
   font-weight: bold;
 }

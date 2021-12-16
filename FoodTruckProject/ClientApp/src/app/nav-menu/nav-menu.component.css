@@ -4,8 +4,9 @@ a.navbar-brand {
   word-break: break-all;
 }
 
-html {
+html, header {
   font-size: 14px;
+  background-color: #737c8c;
 }
 @media (min-width: 768px) {
   html {
