@@ -24,24 +24,27 @@ export class NewPageComponent {
 
   addPassportPage(form: NgForm): void {
 
+    console.log(form.form.value.dateVisited);
 
-    let newPage: passportPage = {
-      id: 0,
-      businessId: this.bId,
-      businessName: this.bName,
-      userId: "",
-      rating: form.form.value.rating,
-      foodEaten: form.form.value.foodEaten,
-      experience: form.form.value.experience,
-      dateVisited: form.form.value.dateVisited,
-      picture: form.form.value.foodPic
+    if (form.form.value.dateVisited != "") {
+      let newPage: passportPage = {
+        id: 0,
+        businessId: this.bId,
+        businessName: this.bName,
+        userId: "",
+        rating: form.form.value.rating,
+        foodEaten: form.form.value.foodEaten,
+        experience: form.form.value.experience,
+        dateVisited: form.form.value.dateVisited,
+        picture: form.form.value.foodPic
+      }
+      this.passportService.addPassportPage(newPage.businessId, newPage.businessName, newPage.rating, newPage.foodEaten, newPage.experience, newPage.dateVisited, newPage.picture).subscribe((response: any) => {
+        this.routing.navigate(['/passport']);
+      })
     }
-    this.passportService.addPassportPage(newPage.businessId, newPage.businessName, newPage.rating, newPage.foodEaten, newPage.experience, newPage.dateVisited, newPage.picture).subscribe((response: any) => {
-     
-    })
+    else {
+      alert('Please enter a date!');
+    }
     
-    this.routing.navigate(['/passport']).then(() => {
-      window.location.reload();
-    });
   }
 }

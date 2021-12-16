@@ -32,7 +32,47 @@ label {
   font-weight: bold;
 }
 
-h3 {
+h4 {
   font-weight: bold;
 }
 
+.mobileFix {
+  display: none;
+}
+
+@media only screen and (max-width: 670px) {
+  .mobileFix {
+    display: block;
+  }
+
+  .desktopHide {
+    display: none;
+  }
+
+  .justify-content-center {
+    justify-content: start !important;
+  }
+
+  .text-center {
+    text-align: left !important;
+    width: 80%;
+  }
+
+  .img-Mobile {
+    width: 250px !important;
+  }
+
+  .car-rating {
+    height: 20px !important;
+  }
+
+  .passport-Logo {
+    height: 250px;
+    width: 250px;
+  }
+
+  .passport-Logo-tiny {
+    height: 80px;
+    width: 141.6px;
+  }
+}

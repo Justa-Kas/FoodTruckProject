@@ -1,13 +1,34 @@
-<div class=" d-flex justify-content-center">
+<!-- Mobile  -->
+<div class="row">
   <button title="Previous Page"
-          class="btn btn-link btn-floating btn-lg m-1 text-dark text-decoration-none"
+          class=" col mobileFix btn btn-link btn-floating m-1 text-dark text-decoration-none"
           *ngIf="pageCounter > 0 && !updatedPage"
           (click)="previousPage(pageCounter -1)">
     <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="currentColor" class="bi bi-arrow-left-circle-fill" viewBox="0 0 16 16">
       <path d="M8 0a8 8 0 1 0 0 16A8 8 0 0 0 8 0zm3.5 7.5a.5.5 0 0 1 0 1H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5H11.5z" />
     </svg>
   </button>
-  <div class="shadow-lg card border border-dark px-3 pt-0 mb-5 bg-dark text-white rounded ml-1 mt-4" style="width:550px; height:700px">
+  <button title="Next Page"
+          class=" col mobileFix btn btn-link btn-floating btn-lg m-1 text-dark text-decoration-none"
+          *ngIf="pageCounter < Passport.length && !updatedPage"
+          (click)="forwardPage(pageCounter)">
+    <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="currentColor" class="bi bi-arrow-right-circle-fill" viewBox="0 0 16 16">
+      <path d="M8 0a8 8 0 1 1 0 16A8 8 0 0 1 8 0zM4.5 7.5a.5.5 0 0 0 0 1h5.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5H4.5z" />
+    </svg>
+  </button>
+</div>
+<div class="d-flex justify-content-center">
+  <!-- Desktop button -->
+  <button title="Previous Page"
+          class="desktopHide btn btn-link btn-floating btn-lg m-1 text-dark text-decoration-none"
+          *ngIf="pageCounter > 0 && !updatedPage"
+          (click)="previousPage(pageCounter -1)">
+    <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="currentColor" class="bi bi-arrow-left-circle-fill" viewBox="0 0 16 16">
+      <path d="M8 0a8 8 0 1 0 0 16A8 8 0 0 0 8 0zm3.5 7.5a.5.5 0 0 1 0 1H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5H11.5z" />
+    </svg>
+  </button>
+
+  <div class="shadow-lg card border border-dark p-3 pt-0 mb-5 bg-dark text-white rounded ml-1 mt-4" style="width:550px; height:700px">
     <div class="d-flex justify-content-end">
       <button title="Edit Page"
               class="btn btn-link btn-floating btn-lg m-1 text-white text-decoration-none"
@@ -23,13 +44,13 @@
       <div *ngIf="ratingArray.length == 0">
         <h2 class="">Welcome To Your Passport!</h2>
         <div class="mt-5">
-          <img src="../../assets/images/PassportTruck.png" height="350" width="350" />
+          <img src="../../assets/images/PassportTruck.png" class="passport-Logo" height="350" width="350" />
         </div>
       </div>
       <div *ngIf="ratingArray.length > 0">
-        <h3 class="mt-0">{{ onePage.businessName }}</h3>
-        <div class="card text-white bg-dark" style="height: 150px; width: 100%;">
-          <img src="{{onePage.picture}}" style="height:150px; width:500px; object-fit:contain; object-position:center" alt="Edit to add picture" />
+        <h4 class="mt-0">{{ onePage.businessName }}</h4>
+        <div class="card text-white bg-dark img-Mobile" style="height: 150px; width: 500px;">
+          <img src="{{onePage.picture}}" class="img-Mobile" style="height:150px; width:500px; object-fit:contain; object-position:center" alt="Edit to add picture" />
         </div>
         <hr color="white" />
         <h5 class="text-left">Date visited: {{ displayDate() }}</h5>
@@ -43,15 +64,16 @@
         </div>
         <div class="d-flex justify-content-left">
           <h5 class="text-left">Rating: </h5>
-          <img class="ml-2" *ngFor="let truckImg of ratingArray" src="../../assets/images/RatingTruck.png" height="30" />
+          <img class="ml-2 car-rating" *ngFor="let truckImg of ratingArray" src="../../assets/images/RatingTruck.png" height="30" />
         </div>
-        <img class="mt-4 mb-0" src="../../assets/images/RedTruckStamp.png" height="100" width="177" />
+        <img class="mt-4 mb-0 passport-Logo-tiny" src="../../assets/images/RedTruckStamp.png" height="100" width="177" />
       </div>
     </div>
   </div>
 
+  <!-- Desktop button -->
   <button title="Next Page"
-          class="btn btn-link btn-floating btn-lg m-1 text-dark text-decoration-none"
+          class="desktopHide btn btn-link btn-floating btn-lg m-1 text-dark text-decoration-none"
           *ngIf="pageCounter < Passport.length && !updatedPage"
           (click)="forwardPage(pageCounter)">
     <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="currentColor" class="bi bi-arrow-right-circle-fill" viewBox="0 0 16 16">
@@ -61,11 +83,10 @@
 
 
   <div class="shadow-lg mb-5 bg-white rounded ml-1 mt-4 d-flex justify-content-between ">
-    <div class="card pt-0 px-3" *ngIf="updatedPage == true" >
+    <div class="card pt-0 px-3" *ngIf="updatedPage == true">
       <div class="d-flex justify-content-between">
         <h4 class=" pt-4 mx-auto pl-5">Update Page</h4>
-        <button
-                title="Cancel"
+        <button title="Cancel"
                 class="btn btn-link btn-floating btn-lg m-1 text-dark text-decoration-none"
                 (click)="resetPage()">
           <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-x-lg" viewBox="0 0 16 16">
@@ -104,7 +125,7 @@
             <input class="slider mb-3" name="rating" type="range" min="1" max="5" [ngModel]="onePage.rating" /><br />
           </div>
           <div class="mx-auto mt-4">
-            <button class="btn btn-dark btn-block mb-3" value="Refresh" onClick="window.location.reload(true)">Update Passport Entry</button>
+            <button class="btn btn-dark btn-block mb-3">Update Passport Entry</button>
           </div>
         </form>
       </div>
@@ -112,7 +133,3 @@
     </div>
   </div>
 </div>
-
-
-
-
